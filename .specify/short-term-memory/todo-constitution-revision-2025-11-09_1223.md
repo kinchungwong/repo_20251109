@@ -11,6 +11,7 @@
 - stakeholder_inputs/obsolete_artifacts/readme_gsfd.md: GSFD domain concepts (Graph, Step, Field, Data, Finder, Executor) plus namespace guidance (allowed `gsfd` prefix).
 - stakeholder_inputs/obsolete_artifacts/very_old_checklist.md: comprehensive spec checklist whose analysis burden exhausted agent context.
 - stakeholder_inputs/obsolete_artifacts/large_obsolete_artifacts/00000000-very_old_story/: full SpecDD bundle (spec, plan, tasks, checklists, research, data-model, quickstarts, notes, contracts) illustrating systemic process sprawl.
+- stakeholder_inputs/opinions_2025-11-09-2222.md: stakeholder opinion reinforcing risk-tiered governance, outcome-focused checkpoints, and modular checklists to protect AI context bandwidth.
 
 ## Key Takeaways
 1. **Process Fatigue**: Previous constitution + checklist forced exhaustive reasoning per feature, exhausting AI context. New draft must encode outcomes without requiring agents to restate every check.
@@ -44,3 +45,23 @@
 - **Checklist reverberation**: Requirements and onboarding checklists rephrase spec/plan content yet were meant to be repeated before each `/speckit` command. Combined with `spec-analysis-*` snapshots, they forced triple bookkeeping for the same facts.
 - **Governance drift evidence**: Analysis reports point out template banners left in tasks, stale Constitution Checks, and missing evidence logs—proof that piling on more gates did not prevent drift but did increase cognitive load.
 - **Implication for new constitution**: Favor lean, risk-tiered enforcement (e.g., summary-level Sync Impact notes, shared evidence catalog) over monolithic checklists so agents can comply without rereading the entire bundle every iteration.
+- **Stakeholder opinion (2025-11-09 22:22)**: Latest input backs the above conclusions and adds concrete levers—define purpose/trigger/evidence/automation support for each rule, package checklists per risk tier, and allow pragmatic exemptions when automation is blocked. Also noted a transient “file not found” for `todo-obsolete-constitution-lessons-2025-11-09_1240.md`; confirmed file now exists at `.specify/short-term-memory/`.
+
+## Repo Top-Level Directories Snapshot (2025-11-09 12:45 UTC)
+- `AGENTS.md`
+- `build/`
+- `cmake/`
+- `docs/`
+- `examples/`
+- `include/`
+- `internal_docs/`
+- `LICENSE`
+- `README.md`
+- `reports/`
+- `specs/`
+- `src/`
+- `stakeholder_inputs/`
+- `tests/`
+- `third_party/`
+
+Instruction reminder: If future `.specify/*` guidance conflicts with these directories or their intended use, pause and ask the user (one conflict at a time) which directive takes precedence before editing.
