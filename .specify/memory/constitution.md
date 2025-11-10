@@ -1,21 +1,20 @@
 <!-- Sync Impact Report
-Version change: 0.11.0 → 0.12.0
+Version change: 0.12.0 → 1.0.0
 Modified principles:
-- Principle 5 – Framework-Level Concurrency Contracts & Responsibility Partitioning (clarified layered ownership + validation expectations)
-- Principle 6 – Safety-Critical Test Harness & Verified Evidence (documented deterministic stress strategy + fuzzing toolchain limitation)
-Modified sections: None
+- Principle 7 – Delivery Artifacts & Single Source of Truth (now references ratified RTRM)
+- Process Guardrails, Risk Tiers & RTRM – updated to reflect ratified matrix
 Added sections: None
 Removed sections: None
 Templates requiring updates:
-- ✅ .specify/templates/plan-template.md – Constitution Check already records ownership + validation; no change required
-- ✅ .specify/templates/spec-template.md – Requirements/user stories capture concurrency contracts; no change required
-- ✅ .specify/templates/tasks-template.md – Evidence prompts already cover stress + sanitizer tasks; no change required
-- ✅ .specify/templates/agent-file-template.md – aligns with RTRM language; no change required
-Follow-up TODOs: TODO(RATIFICATION_DATE) – awaits stakeholder ratification; TODO(RTRM) – publish the detailed feature-type vs. risk-tier artifact/test mapping.
+- ✅ .specify/templates/plan-template.md – Constitution Check already references RTRM; no change required
+- ✅ .specify/templates/spec-template.md – Requirements flow unchanged; no change required
+- ✅ .specify/templates/tasks-template.md – Evidence prompts still valid; no change required
+- ✅ .specify/templates/agent-file-template.md – wording already points to RTRM; no change required
+Follow-up TODOs: None
 -->
 
 # repo_20251109 Constitution
-> **Status**: PENDING RATIFICATION — draft captured 2025-11-09 to guide negotiations; do not enforce verbatim yet.
+> **Status**: RATIFIED 2025-11-09 — enforceable governance for the GSFD program.
 
 ## Core Principles
 
@@ -38,13 +37,13 @@ GSFD is a reusable C++ multi-core execution framework, so thread safety MUST be 
 Tier 0 runtime or executor changes ship with contract, unit, integration, concurrency, sanitizer, scheduler A/B testing, and oversubscribed stress harnesses authored before implementation and run on real hardware or CI. Fuzz tests become mandatory once the toolchain supports them (current g++14 stack lacks first-class fuzzing); until then, plans MUST record how deterministic/stress coverage mitigates the gap. Tier 1 features tailor the matrix but MUST justify omissions in plan.md; Tier 2 maintenance at least adds regression or smoke coverage. All assertions cite the exact command, platform, and log path; simulated outputs are prohibited. *Rationale*: Evidence-first delivery enables lightweight reviews without sacrificing quality.
 
 ### Principle 7 – Delivery Artifacts & Single Source of Truth
-Every increment maintains `spec.md`, `plan.md`, and `tasks.md` in lockstep, with optional `research.md`, `data-model.md`, `quickstart.md`, `contracts/`, and `notes/` folders activated per the risk tier recorded in the plan’s Constitution Check. Once the Risk-Tier Reference Matrix (RTRM) is ratified, use it alongside the tier to decide which optional artifacts become mandatory. Until then, capture the rationale for each optional artifact (or its omission) directly in plan.md. Agents never scaffold Spec-Kit directories manually; humans run the commands and agents update content. Artifacts retire redundant reasoning once conclusions merge back into the canonical files. *Rationale*: A minimal, curated artifact set keeps the doc set slim yet authoritative.
+Every increment maintains `spec.md`, `plan.md`, and `tasks.md` in lockstep, with optional `research.md`, `data-model.md`, `quickstart.md`, `contracts/`, and `notes/` folders activated per the risk tier recorded in the plan’s Constitution Check. Use the Risk-Tier Reference Matrix (RTRM) alongside the tier to decide which optional artifacts become mandatory, and record any waivers directly in plan.md. Agents never scaffold Spec-Kit directories manually; humans run the commands and agents update content. Artifacts retire redundant reasoning once conclusions merge back into the canonical files. *Rationale*: A minimal, curated artifact set keeps the doc set slim yet authoritative.
 
 ### Principle 8 – Observability, Diagnostics & Performance Clarity
 Runtime work specifies required logging, tracing, and metrics before implementation, including deterministic replay hooks for gsfd graphs. Performance goals (throughput, latency, memory) must be measurable and appear alongside acceptance criteria. Observability scaffolding is part of the MVP definition, not an afterthought. *Rationale*: Proactive diagnostics prevent bloated retrofits and shorten debugging cycles.
 
 ## Process Guardrails, Risk Tiers & RTRM
-The program tracks three tiers to keep gates proportionate and will anchor them in the Risk-Tier Reference Matrix (RTRM) once ratified:
+The program tracks three tiers to keep gates proportionate, and the Risk-Tier Reference Matrix (RTRM) codifies the required artifacts, validations, and approvals for each:
 
 | Tier | Example Work | Mandatory Artifacts & Gates | Lightweight Strategy |
 |------|--------------|-----------------------------|----------------------|
@@ -52,7 +51,7 @@ The program tracks three tiers to keep gates proportionate and will anchor them 
 | **Tier 1 – Feature Expansion & Integrations** | New graph ops, APIs, tooling | Spec anchors with acceptance criteria, plan Constitution Check, task breakdown per story, targeted harness matrix | May trim checklist categories that do not apply; record the waiver + rationale in plan.md. |
 | **Tier 2 – Maintenance, Docs, Enablement** | Bug fixes, doc refresh, infra chores | Spec delta note (can be inline), mini-plan TL;DR, task list referencing impacted files | Use the maintenance fast-path: embed <10 line Constitution Check noting why heavier gates are skipped, and ensure tests or smoke validation still run. |
 
-The RTRM (pending ratification) will capture detailed feature types and the artifacts/tests each tier requires; until it is published, teams SHALL document deviations explicitly inside plan.md.
+Refer to `.specify/memory/risk_tier_reference_matrix.md` for the canonical artifact/test matrix; document any deviations explicitly inside plan.md.
 
 ## Delivery Workflow & Evidence Handling
 1. Draft or refresh `spec.md` with TL;DR, prioritized journeys, acceptance criteria, edge cases, and Context Budget entries; register any new prefixes.
@@ -65,4 +64,4 @@ The RTRM (pending ratification) will capture detailed feature types and the arti
 ## Governance
 This draft supersedes no prior ratified policy yet contributors SHALL align behavior with its intent to flush gaps before ratification. Amendment proposals MUST state the semantic version bump type (MAJOR for removals/rewrites, MINOR for new principles or sections, PATCH for clarifications), update the Sync Impact Report, and list every dependent template or runtime guide touched. Quarterly (or release-level) compliance reviews verify principles against `.specify/templates/*`, `.codex/` prompts, and runtime docs; review findings feed short-term-memory notes until resolved in canonical artifacts.
 
-**Version**: 0.12.0 | **Ratified**: TODO(RATIFICATION_DATE): set once stakeholders approve | **Last Amended**: 2025-11-09
+**Version**: 1.0.0 | **Ratified**: 2025-11-09 | **Last Amended**: 2025-11-09

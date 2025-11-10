@@ -32,7 +32,7 @@ Each Spec-Kit file is authoritative for its subject. When facts change, update t
 ## Temporary Notes & Pruning
 
 - Use `.specify/short-term-memory/` for global digests and `/specs/[###-feature]/notes/todo/` for branch-scoped notes.
-- File names follow `todo-{keywords}-{YYYY-mm-dd_HHMM}.md` (generate the timestamp via `echo $(date +"%Y-%m-%d_%H%M")`).
+- File names follow `todo-{keywords}-{YYYY-mm-dd_HHMM}.md` (generate the timestamp via `echo $(TZ=':America/Los_Angeles' date '+%Y-%m-%d_%H%M')`).
 - Keep each note under 40 lines or 20 checklist items; split or archive when exceeding the limit.
 - Summaries of resolved notes MUST flow back into the canonical spec/plan/tasks before deleting or retiring the note.
 
