@@ -3,11 +3,25 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**Note**: This template is filled in by the `/speckit.plan` command (see `.specify/scripts/bash/setup-plan.sh`). Command reference docs will live under `.specify/templates/commands/` once published.
 
 ## Summary
 
 [Extract from feature spec: primary requirement + technical approach from research]
+
+## TL;DR (≤200 words)
+
+[Concise summary that an agent can reload without re-reading the entire plan. Link to short-term-memory digest if more detail exists.]
+
+## Context Budget & References
+
+| Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
+|-------------------|----------------------|------------------|-----------------|
+| spec.md | [e.g., ≤400 lines] | [estimate] | [link] |
+| plan.md | [e.g., ≤300 lines] | [estimate] | [link] |
+| tasks.md | [e.g., ≤250 lines] | [estimate] | [link] |
+| Short-term-memory notes | [≤40 lines per file] | [link or N/A] | [todo file path] |
+| External evidence store | [log size or artifact] | [link] | [location/owner] |
 
 ## Technical Context
 
@@ -29,13 +43,25 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+*Record the gate chosen for this increment; Tier 2 fast-paths still require justification.*
+
+| Field | Value |
+|-------|-------|
+| Risk Tier | [Tier 0 / Tier 1 / Tier 2] |
+| Gate Path | [Standard Spec → Plan → Tasks / Tier 2 Fast-Path] |
+| Mandatory Checklists | [link(s) or N/A] |
+| Lightweight Waivers | [if any gates skipped, explain in ≤3 lines] |
+| Evidence Strategy | [commands + log destinations per Principle 6] |
+| Observability Commitments | [metrics/logging decided up front] |
+| Automation Gaps / Human Help Needed | [describe commands requiring humans + link to TODO] |
 
 [Gates determined based on constitution file]
 
 ## Project Structure
 
 ### Documentation (this feature)
+
+> Create optional files only when the risk tier mandates them; otherwise cite the short-term-memory digest that stores exploratory reasoning.
 
 ```text
 specs/[###-feature]/

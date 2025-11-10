@@ -8,9 +8,17 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Tier 0/1 increments MUST include the required harness tasks (contract/unit/integration/etc). Tier 2 increments MAY trim the matrix but must document the waiver inline.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+
+## Context Budget & Evidence Hooks
+
+| Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
+|-------------------|----------------------|------------------|-----------------|
+| tasks.md | [≤250 lines] | [estimate] | [link] |
+| Story-level logs | [per story evidence target] | [log link] | [command/run owner] |
+| Short-term-memory notes | [≤40 lines/file] | [todo link or N/A] | [retirement plan] |
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -206,6 +214,16 @@ Task: "Integration test for [user journey] in tests/integration/test_[name].py"
 Task: "Create [Entity1] model in src/models/[entity1].py"
 Task: "Create [Entity2] model in src/models/[entity2].py"
 ```
+
+---
+
+## Automation Gaps & Human-Only Steps
+
+| Task ID | Reason Agent Cannot Run | Human Owner | Evidence / Log Location |
+|---------|------------------------|-------------|-------------------------|
+| [e.g., T105] | [Privileged command requires hardware access] | [Name] | [link to log] |
+
+> Track gaps here and mirror them in the short-term-memory notes until closed so nothing silently drops.
 
 ---
 

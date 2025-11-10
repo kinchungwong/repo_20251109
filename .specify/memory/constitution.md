@@ -1,10 +1,24 @@
 <!-- Sync Impact Report
-Version change: N/A → 0.9.0
-Modified principles: Template placeholders → Principle 1–9 (pending wording)
-Added sections: Core Principles (pending), Process Guardrails & Risk Tiers (pending), Delivery Workflow & Evidence Handling (pending)
+Version change: 0.9.0 → 0.10.0
+Modified principles:
+- Principle 1 – Agent-First Stewardship & Context Protection → Principle 1 – Spec-Kit Backbone & Incremental Flow
+- Principle 2 – Specification Anchors with Lightweight Gates → Principle 2 – Context-Budgeted Knowledge Stewardship
+- Principle 3 – Scaled Agile Flow & Incremental Value → Principle 3 – Specification Anchors & Lightweight Gates (lightweight rewrite)
+- Principle 4 – Deterministic Graph Safety & Terminology Discipline → Principle 5 – Deterministic Graph Safety & Terminology Discipline (clarified scope)
+- Principle 5 – Safety-Critical Test Harness Discipline → Principle 6 – Safety-Critical Test Harness & Verified Evidence
+- Principle 6 – Automation Boundaries & Escalation → Principle 4 – Human-Agent Collaboration & Escalation Integrity
+- Principle 7 – Verified Execution Evidence → Principle 6 – Safety-Critical Test Harness & Verified Evidence
+- Principle 8 – Delivery Artifact Minimums & Single Source of Truth → Principle 7 – Delivery Artifacts & Single Source of Truth
+- Principle 9 – Observability, Diagnostics, and Evidence of Performance → Principle 8 – Observability, Diagnostics & Performance Clarity
+Added sections: None
 Removed sections: None
-Templates requiring updates: ⚠ .specify/templates/plan-template.md, ⚠ .specify/templates/spec-template.md, ⚠ .specify/templates/tasks-template.md, ⚠ .specify/templates/checklist-template.md, ⚠ .specify/templates/agent-file-template.md
-Follow-up TODOs: TODO(RATIFICATION_DATE), finalize principle thresholds, define risk-tiered checklists, align templates, confirm gsfd prefix registry entry
+Templates requiring updates:
+- ✅ .specify/templates/plan-template.md
+- ✅ .specify/templates/spec-template.md
+- ✅ .specify/templates/tasks-template.md
+- ✅ .specify/templates/checklist-template.md
+- ✅ .specify/templates/agent-file-template.md
+Follow-up TODOs: TODO(RATIFICATION_DATE) – awaits stakeholder ratification; TODO(APPENDIX_999) – finalize feature-type/risk-tier reference matrix.
 -->
 
 # repo_20251109 Constitution
@@ -12,69 +26,50 @@ Follow-up TODOs: TODO(RATIFICATION_DATE), finalize principle thresholds, define 
 
 ## Core Principles
 
-### Principle 1 – Agent-First Stewardship & Context Protection
-> Pending ratification: language will be tuned once stakeholder feedback confirms scope.
+### Principle 1 – Spec-Kit Backbone & Incremental Flow
+Spec-Kit governs every increment: humans bootstrap `/specs/[###-feature-name]/` branches (the canonical Spec-Kit folder slug) with the Specify → Plan → Task → Implement cadence, and agents trace each deliverable back to the originating spec. Every branch must deliver independently testable value, even if it only advances part of a larger user story. *Rationale*: Treating Spec-Kit as law keeps automation, governance, and audit hooks aligned, preventing side-channel processes that bloat documentation.
 
-AI agents MUST structure every artifact with the mandated headers, concise scope statements, and cross-references so collaborators can reload context quickly. Documents SHALL remain single sources of truth and retire redundant reasoning into `.specify/short-term-memory/` digests once resolved, ensuring large checklists or audits are summarized rather than re-litigated.
+### Principle 2 – Context-Budgeted Knowledge Stewardship
+Artifacts MUST follow `.specify/memory/agent_doc_mgmt_stds.md` headers and include a TL;DR (≤200 words) plus key links so agents and humans can reload state without rereading prior volumes. Reasoning that exceeds 400 lines migrates into `.specify/short-term-memory/` digests that summarize decisions before being retired. Each template now includes a "Context Budget" table to signal expected token/line ceilings, and teams SHALL cite where long-form evidence lives instead of duplicating it. *Rationale*: Intentional layering keeps the constitution + ADMS lightweight while preserving traceability.
 
-### Principle 2 – Specification Anchors with Lightweight Gates
-> Pending ratification: balance between thoroughness and agility under review.
+### Principle 3 – Specification Anchors & Lightweight Gates
+Net-new capabilities start from `spec.md` anchors that describe prioritized user journeys, acceptance criteria, and edge cases. Plans and tasks MUST cite the anchor IDs and record whether the work follows the standard gate (Spec → Plan → Tasks approvals) or a Tier 2 maintenance fast-path. Lightweight gates defer heavyweight checklists until the risk tier demands them, yet every deviation is logged inside the Plan’s Constitution Check. *Rationale*: Anchors guard scope while letting low-risk fixes move quickly.
 
-Every net-new capability MUST originate from an approved `spec.md` capturing user journeys, acceptance criteria, and edge cases, yet small maintenance or safety fixes MAY follow an expedited path documented in the plan’s Constitution Check. Plans MUST trace deliverables back to specs while explicitly calling out any intentionally deferred requirements.
+### Principle 4 – Human-Agent Collaboration & Escalation Integrity
+Agents declare tooling or permission constraints upfront, request human execution for privileged commands, and attach authentic logs to every claim. Socratic reviews and interruptions are expected; short-term-memory notes capture dead-ends so continuity survives hand-offs. Automation gaps become explicit TODOs with owners and due dates inside the relevant artifact instead of tribal knowledge. *Rationale*: Transparent collaboration prevents silent failures and makes the light process trustworthy.
 
-### Principle 3 – Scaled Agile Flow & Incremental Value
-> Pending ratification: needs alignment with stakeholder scaled-agile expectations.
+### Principle 5 – Deterministic Graph Safety & Terminology Discipline
+Define/execute phases stay separated, dependencies reflect real data flows, and the `gsfd_*` namespace plus prefix registry entry document graph semantics in plain English before any shorthand appears. Any new concept or identifier MUST be registered in `.specify/memory/crossref_prefixes.md` before use. *Rationale*: Terminology discipline keeps cross-team reasoning short and unambiguous.
 
-Work MUST be organized into independently deliverable increments with clear priorities (P1/P2/P3) so testing, demos, and evidence gathering can conclude per slice. Program-level ceremonies (backlog sync, system demos) SHALL consume artifact summaries rather than replaying full documents, preserving agent context budget.
+### Principle 6 – Safety-Critical Test Harness & Verified Evidence
+Tier 0 runtime or executor changes ship with contract, unit, integration, concurrency, sanitizer, and fuzz tests authored before implementation and run on real hardware or CI. Tier 1 features tailor the matrix but MUST justify omissions in plan.md; Tier 2 maintenance at least adds regression or smoke coverage. All assertions cite the exact command, platform, and log path; simulated outputs are prohibited. *Rationale*: Evidence-first delivery enables lightweight reviews without sacrificing quality.
 
-### Principle 4 – Deterministic Graph Safety & Terminology Discipline
-> Pending ratification: GSFD naming rules subject to refinement.
+### Principle 7 – Delivery Artifacts & Single Source of Truth
+Every increment maintains `spec.md`, `plan.md`, and `tasks.md` in lockstep, with optional `research.md`, `data-model.md`, `quickstart.md`, `contracts/`, and `notes/` folders activated per risk tier or Appendix 999 once finalized. Agents never scaffold Spec-Kit directories manually; humans run the commands and agents update content. Artifacts retire redundant reasoning once conclusions merge back into the canonical files. *Rationale*: A minimal, curated artifact set keeps the doc set slim yet authoritative.
 
-The constitution recognizes GSFD (Graph, Step, Field, Data) semantics: define/execute phases MUST remain separate, implicit dependencies derive from Data flows, and explicit dependencies are documented where needed. `gsfd` is the approved namespace/prefix for runtime code and include directories, and artifacts MUST explain concept names in plain English before referencing identifiers to avoid cross-POC ambiguity.
-
-### Principle 5 – Safety-Critical Test Harness Discipline
-> Pending ratification: risk tiers for the harness to be calibrated.
-
-Core runtime or executor changes MUST ship with multi-layer tests (contract, unit, integration, concurrency stress, sanitizer/fuzz) authored before implementation and executed on real hardware or CI nodes. Lower-risk features MAY tailor the matrix but MUST document the rationale and minimum test evidence retained for audit.
-
-### Principle 6 – Automation Boundaries & Escalation
-> Pending ratification: escalation paths awaiting stakeholder confirmation.
-
-Agents SHALL declare tooling or environment limitations upfront, MUST NOT fabricate command output, and MUST either capture real logs or request human execution with attached evidence. Automation gaps require explicit TODOs plus owner assignments in artifacts so nothing silently drops.
-
-### Principle 7 – Verified Execution Evidence
-> Pending ratification: evidence catalog format TBD.
-
-All assertions about behavior (builds, tests, benchmarks) MUST cite the exact command, platform, and log location. When evidence cannot reside in-repo (size/security), artifacts MUST link to the authoritative storage path and record who validated the run and when. Simulated or assumed outputs are prohibited.
-
-### Principle 8 – Delivery Artifact Minimums & Single Source of Truth
-> Pending ratification: exemptions and tooling hooks still in discussion.
-
-Each feature SHALL maintain a coherent set of artifacts: `spec.md`, `plan.md`, `tasks.md`, and, when applicable, `research.md`, `data-model.md`, `quickstart.md`, and `contracts/`. Updates happen in lockstep with decisions, and `.specify/templates/*` plus the agent guidance file MUST evolve to mirror the latest rules to keep automation honest.
-
-### Principle 9 – Observability, Diagnostics, and Evidence of Performance
-> Pending ratification: observability requirements to be prioritized with stakeholders.
-
-Runtime work MUST define the logging, tracing, and metrics needed to debug gsfd graphs (including deterministic replay hooks) before implementation. Performance targets (throughput, latency, memory) SHALL be measurable, and observability scaffolding MUST be part of the acceptance criteria, not an afterthought.
+### Principle 8 – Observability, Diagnostics & Performance Clarity
+Runtime work specifies required logging, tracing, and metrics before implementation, including deterministic replay hooks for gsfd graphs. Performance goals (throughput, latency, memory) must be measurable and appear alongside acceptance criteria. Observability scaffolding is part of the MVP definition, not an afterthought. *Rationale*: Proactive diagnostics prevent bloated retrofits and shorten debugging cycles.
 
 ## Process Guardrails & Risk Tiers
-> Pending ratification: content captures negotiation baseline, not final policy.
+The program tracks three tiers to keep gates proportionate:
 
-The program SHALL maintain a lightweight risk-tier matrix (e.g., Tier 0 core runtime, Tier 1 feature expansion, Tier 2 maintenance) describing which artifacts, reviews, and harness steps are mandatory. High-tier work triggers full gates (Phase 0/1 artifacts, exhaustive tests, checklist deep-dives); lower tiers MAY opt into abridged flows provided the Constitution Check logs the deviation and rationale. Checklists SHALL be modular per tier to avoid reprocessing irrelevant items.
+| Tier | Example Work | Mandatory Artifacts & Gates | Lightweight Strategy |
+|------|--------------|-----------------------------|----------------------|
+| **Tier 0 – Core Runtime & Executor** | Scheduler, graph safety, memory management | Full Spec → Plan → Tasks approvals, multi-layer tests, checklist deep dives, observability plan, exec evidence | None – all gates mandatory. Use short-term-memory files only for transient investigations and summarize results in specs immediately. |
+| **Tier 1 – Feature Expansion & Integrations** | New graph ops, APIs, tooling | Spec anchors with acceptance criteria, plan Constitution Check, task breakdown per story, targeted harness matrix | May trim checklist categories that do not apply; record the waiver + rationale in plan.md. |
+| **Tier 2 – Maintenance, Docs, Enablement** | Bug fixes, doc refresh, infra chores | Spec delta note (can be inline), mini-plan TL;DR, task list referencing impacted files | Use the maintenance fast-path: embed <10 line Constitution Check noting why heavier gates are skipped, and ensure tests or smoke validation still run. |
+
+Appendix 999 will capture detailed feature types and the artifacts/tests each tier requires; until published, teams SHALL document deviations explicitly inside plan.md.
 
 ## Delivery Workflow & Evidence Handling
-> Pending ratification: workflow steps may change once governance is settled.
-
-1. Capture or update `spec.md` with agent-friendly structure and register any new cross-reference prefixes.  
-2. Draft `plan.md` with Constitution Check focusing on delta analysis rather than rehashing closed findings; identify gating dependencies explicitly.  
-3. Generate `tasks.md` after plan approval, grouping by user story and flagging where test-first work applies per risk tier.  
-4. Execute increments: author failing tests (per Principle 5), implement features, collect real execution evidence, and store/log results with durable links.  
-5. Summarize findings in short-term-memory notes when reasoning exceeds practical artifact scope, then incorporate conclusions into canonical docs and retire the temporary files.  
-6. Regenerate or update agent guidance so automation inherits the new rules, ensuring `gsfd` namespace usage and observability requirements propagate.
+1. Draft or refresh `spec.md` with TL;DR, prioritized journeys, acceptance criteria, edge cases, and Context Budget entries; register any new prefixes.
+2. Run `/speckit.plan` to generate plan.md, populate the Constitution Check with current tier, required gates, lightweight waivers, and cite the evidence strategy and automation gaps.
+3. Populate supporting docs (`research.md`, `data-model.md`, `quickstart.md`, `contracts/`) only when value is proven; otherwise reference the short-term-memory digest that stores exploratory reasoning.
+4. Generate `tasks.md` via `/speckit.tasks`, grouping by user story and tagging each task with test/evidence expectations so increments stay independently shippable.
+5. Execute increments: write failing tests first (per Principle 6), implement code, capture real logs, and stash large evidence externally with durable links noted in the artifact.
+6. Summarize conclusions back into canonical documents, prune temporary notes, and update `.specify/templates/*` plus agent guidance when rules change so automation stays synchronized.
 
 ## Governance
-> Pending ratification: governance cadence and approval thresholds under negotiation.
+This draft supersedes no prior ratified policy yet contributors SHALL align behavior with its intent to flush gaps before ratification. Amendment proposals MUST state the semantic version bump type (MAJOR for removals/rewrites, MINOR for new principles or sections, PATCH for clarifications), update the Sync Impact Report, and list every dependent template or runtime guide touched. Quarterly (or release-level) compliance reviews verify principles against `.specify/templates/*`, `.codex/` prompts, and runtime docs; review findings feed short-term-memory notes until resolved in canonical artifacts.
 
-This draft supersedes no prior policy until ratified; however, contributors SHALL begin aligning behavior with its intent to surface gaps early. Amendment proposals MUST include the intended semantic version bump (MAJOR for rewrites/removals, MINOR for new principles/sections, PATCH for clarifications) plus an updated Sync Impact Report and a delta list for affected templates. Reviews SHALL verify that ratified principles cascade into `.specify/templates/*`, `.codex/` prompts, and runtime guidance. Compliance reviews SHALL occur before each quarterly increment or major release to ensure evidence trails remain reproducible and automation guardrails still match reality.
-
-**Version**: 0.9.0 | **Ratified**: TODO(RATIFICATION_DATE): set once stakeholder sign-off occurs | **Last Amended**: 2025-11-09
+**Version**: 0.10.0 | **Ratified**: TODO(RATIFICATION_DATE): set once stakeholders approve | **Last Amended**: 2025-11-09

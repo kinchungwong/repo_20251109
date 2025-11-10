@@ -12,7 +12,9 @@
 
 | Prefix | Scope / Meaning | Primary Artifact(s) | Notes |
 |--------|-----------------|---------------------|-------|
-| *(empty)* | – | – | Register the first prefix here. |
+| GSFD | Deterministic Graph/Step/Field/Data identifiers for runtime code, docs, and tooling | Runtime code (`gsfd_*`), constitution, templates | Prefix anchors graph-safety vocabulary and MUST appear before adding new namespaces. |
+
+<!-- Reserve additional rows for future prefixes as they are ratified. -->
 
 <!--
 Example entry style:

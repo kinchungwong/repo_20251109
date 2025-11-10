@@ -3,9 +3,28 @@
 **Feature Branch**: `[###-feature-name]`  
 **Created**: [DATE]  
 **Status**: Draft  
+**Risk Tier**: [Tier 0 / Tier 1 / Tier 2]  
 **Input**: User description: "$ARGUMENTS"
 
+> Humans run Spec-Kit commands to create the branch skeleton; agents edit the content only.
+
+## TL;DR (≤200 words)
+
+[Summarize why this increment exists, what success looks like, and where deeper context lives.]
+
+## Context Budget & References
+
+| Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
+|-------------------|----------------------|------------------|-----------------|
+| spec.md | [≤400 lines] | [estimate] | [link] |
+| plan.md | [≤300 lines] | [estimate] | [link] |
+| tasks.md | [≤250 lines] | [estimate] | [link] |
+| Short-term-memory digest | [≤40 lines/file] | [link or N/A] | [notes] |
+| External evidence | [log size] | [link or location] | [owner] |
+
 ## User Scenarios & Testing *(mandatory)*
+
+> Each story ID (US1, US2, …) becomes the anchor referenced by plan.md and tasks.md. Keep each story independently testable so small slices fit within context budgets.
 
 <!--
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
@@ -113,3 +132,13 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+## Lightweight Gate Notes
+
+| Field | Value |
+|-------|-------|
+| Risk Tier | [Tier 0 / Tier 1 / Tier 2] |
+| Gate Path | [Standard / Tier 2 Fast-Path] |
+| Stories Deferred (if any) | [List US# or N/A] |
+| Evidence / Observability Hooks | [commands, metrics, log targets] |
+| Short-term-memory References | [links to temporary digests to be retired later] |
