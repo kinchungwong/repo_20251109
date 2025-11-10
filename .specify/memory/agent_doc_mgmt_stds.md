@@ -1,60 +1,49 @@
 # Agent Document Management Standards
 
-This standards document applies to AI Agent created and managed documents within the GSFD project.
+**TL;DR** — This document operationalizes Constitution Principle 2 (Context-Budgeted Knowledge Stewardship). Every artifact must start with a reader-ready header, declare its context budget, and link to the canonical template. Deep reasoning lives in short-term-memory digests, then gets summarized back into the permanent artifact so the corpus stays light.
 
-## Applicable Documents
+## Scope & Canonical Sources
 
-- Codex CLI agent prompts at `repo_20251109/.codex/prompts`
-- Specification Governance, such as Constitution, at `repo_20251109/.specify`
-- Specification Artifacts, such as Features, Stories, Specifications, Plans, and Tasks, at `repo_20251109/specs`
+- Constitution: `.specify/memory/constitution.md` defines the “what.” This standard explains the “how.”
+- Templates: `.specify/templates/*.md` own formatting rules; update them instead of duplicating guidance here.
+- Prefix registry: `.specify/memory/crossref_prefixes.md` must be edited before introducing any new shorthand.
+- Agent prompts: `.codex/prompts/` inherit the same expectations.
 
-## Agent-First Document Header
+## Agent-First Headers & Context Budgets
 
-Remember, this project will grow big. Big enough to overwhelm both human and AI agent memory.
+Every Spec-Kit artifact authored or touched by an agent MUST begin with:
+1. Document name + status (Draft, In Progress, Ratified, Archived).
+2. TL;DR ≤200 words covering purpose, key decisions, and next action.
+3. Context Budget table or bullets that state the target line/token ceiling and point to supporting digests if overflow occurs.
+4. Ownership metadata: spec/plan/task path, feature branch, latest evidence link or command reference.
 
-Each document must contain a header section that quickly orients readers to the document's purpose, scope, and context. It shall enable readers to quickly decide if the document is relevant to their current task.
+Templates already include placeholders for these items; remove unused fields rather than leaving them blank.
 
-## Single Source of Truth
+## Single Source of Truth & Versioning
 
-Each document must be the single source of truth for its content. AI agents and human developers must avoid duplicating or fragmenting information across multiple documents.
+Each Spec-Kit file is authoritative for its subject. When facts change, update the canonical file instead of copying text elsewhere. Git records the history; agents focus on describing *what* changed and why, and SHOULD propose a commit message for any substantive edit even though humans perform the actual commit.
 
-## Cross-Referencing, Numbering, and Prefix Registry
+## Cross-References & Prefix Discipline
 
-Projects of this size require extensive cross-referencing between documents. For brevity, unique identifiers such as document prefixes and section or item numbers should be used.
+- Register every domain shorthand (e.g., `GSFD`, `ADMS`) in `crossref_prefixes.md` before first use.
+- Reference other documents by their registered prefix plus section anchor; avoid renumbering unless unavoidable.
+- If renumbering occurs, log it in the Sync Impact Report and rerun affected consistency checks or scripts.
 
-To prevent misuse of prefixes, all prefixes must be registered (added, updated, and maintained) in `repo_20251109/.specify/memory/crossref_prefixes.md`. All changes to cross-references must kick off an Agent-based consistency validation step.
+## Temporary Notes & Pruning
 
-Do not perform reordering of existing numbered items unless absolutely necessary. If reordering is necessary, ensure that all cross-references are updated accordingly.
+- Use `.specify/short-term-memory/` for global digests and `/specs/[###-feature]/notes/todo/` for branch-scoped notes.
+- File names follow `todo-{keywords}-{YYYY-mm-dd_HHMM}.md` (generate the timestamp via `echo $(date +"%Y-%m-%d_%H%M")`).
+- Keep each note under 40 lines or 20 checklist items; split or archive when exceeding the limit.
+- Summaries of resolved notes MUST flow back into the canonical spec/plan/tasks before deleting or retiring the note.
 
-For item completion, use the Unicode checkmark (✅). For item failures, use the Unicode cross mark (❌). For superseded items, use the Markdown strikethrough syntax (~~text~~), followed by reason.
+## Artifact Context Budget Reference
 
-## Persistence and Versioning
+| Artifact | Canonical Path | Target Line Budget | Notes |
+|----------|----------------|--------------------|-------|
+| Spec (`spec.md`) | `/specs/[###-feature]/spec.md` | ≤250 | Includes journeys, acceptance criteria, edge cases, and context budget. |
+| Plan (`plan.md`) | `/specs/[###-feature]/plan.md` | ≤150 | Contains Constitution Check, gate/waiver log, evidence strategy. |
+| Tasks (`tasks.md`) | `/specs/[###-feature]/tasks.md` | ≤120 | Group by story/goal; cite evidence expectations per task. |
+| Research/Notes | `/specs/.../notes/` | ≤200 per file | Use for exploratory work; summarize back into canonical docs. |
+| Short-Term Memory Digest | `.specify/short-term-memory/*.md` | ≤400 | Retire once summarized; keep only active digests. |
 
-All files are under version control via Git. The human user is ultimately responsible for committing changes to the repository. Whenever applicable, AI agents must suggest appropriate commit messages.
-
-## Temporary To-Do Notes
-
-AI agents have limited memory, and must rely on documents for persistence of context. When AI agents respond to
-a prompt that requires many steps, they may need to create temporary to-do notes.
-
-Due to the complexity of thought processes in AI-mediated domain expert collaboration, these to-do notes may get long. AI agents must periodically review and prune completed or obsolete to-do notes to maintain clarity. If it gets to more than 40 lines of text or 20 items or 3 or more unrelated sections, consider splitting it into multiple to-do files. Rules for file locations and naming conventions are as follows.
-
-### Locations for Temporary To-Do Notes
-
-Feature branch specific to-do notes must be stored inside the directory `repo_20251109/specs/000-feature-branch-name/notes/todo/`.
-
-General to-do notes can be stored inside the directory `repo_20251109/.specify/short-term-memory/`.
-
-### File naming convention for Temporary To-Do Notes
-
-All temporary to-do note file names must start with the prefix `todo-`, a filesystem-safe dash-separated keyword-only description, a timestamp in `YYYY-mm-dd_HHMM` format, and end with the `.md` extension.
-
-Hint: the timestamp can be generated using the following command:
-
-```sh
-echo $(date +"%Y-%m-%d_%H%M")
-```
-
-### AI Agent Forgetfulness Mitigation
-
-From time to time, the AI agent context need compaction (purging) or a fresh restart. Either case, some temporal memory may be lost. To mitigate this, AI agents must dutifully summarize and consolidate into permanent specification artifacts. Complex steps needing short-term memory can rely on temporary to-do notes.
+Budgets are ceilings, not quotas. When a document exceeds its budget temporarily, record the exception in the header and create an action item to prune it.
