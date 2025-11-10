@@ -8,11 +8,11 @@
 - Any change to this file should trigger the constitution’s consistency validation step so dependent artifacts stay aligned.
 
 ## Registered Prefixes
-*No prefixes are registered yet. Add entries in the table below as they are defined.*
+*No prefixes are registered yet. Use the mock row below as a formatting example and replace it when the first real prefix is approved.*
 
 | Prefix | Scope / Meaning | Primary Artifact(s) | Notes |
 |--------|-----------------|---------------------|-------|
-| GSFD | Deterministic Graph/Step/Field/Data identifiers for runtime code, docs, and tooling | Runtime code (`gsfd_*`), constitution, templates | Prefix anchors graph-safety vocabulary and MUST appear before adding new namespaces. |
+| EXAMPLE_FR-### | Example functional requirement prefix (placeholder) | `specs/###-feature/spec.md` | Replace this row with the first ratified prefix entry. |
 
 <!-- Reserve additional rows for future prefixes as they are ratified. -->
 
@@ -20,3 +20,7 @@
 Example entry style:
 | FR-### | Functional Requirement identifiers | specs/###-feature/spec.md | Mandatory behavior grouped by lifecycle stage. |
 -->
+
+## Project Acronyms (not prefixes)
+
+GSFD, ADMS
