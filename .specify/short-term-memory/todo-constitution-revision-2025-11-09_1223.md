@@ -65,3 +65,14 @@
 - `third_party/`
 
 Instruction reminder: If future `.specify/*` guidance conflicts with these directories or their intended use, pause and ask the user (one conflict at a time) which directive takes precedence before editing.
+
+## `.specify` Folder-Name Verification Log (2025-11-09 12:55 UTC)
+| Reference Path (from `.specify`) | Exists? | Notes |
+| --- | --- | --- |
+| `repo_20251109/.codex/prompts/` (Agent doc stds) | ✅ | `.codex/prompts/` present with prompt files. |
+| `repo_20251109/.specify/` | ✅ | Current working area. |
+| `repo_20251109/specs/` | ✅ | Empty placeholder root; future features go here. |
+| `repo_20251109/.specify/memory/crossref_prefixes.md` | ✅ | Created 2025-11-09 with header, usage instructions, empty table + commented example. |
+| `repo_20251109/specs/000-feature-branch-name/notes/todo/` | ➖ Template | Path is a template placeholder; not expected to exist until a feature branch is created. |
+| `repo_20251109/.specify/short-term-memory/` | ✅ | Active short-term memory folder (this file + lessons memo). |
+| `repo_20251109/stakeholder_inputs/README.md` | ✅ | Exists per earlier review. |
