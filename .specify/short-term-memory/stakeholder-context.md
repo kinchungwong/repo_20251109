@@ -12,3 +12,4 @@ Stakeholder profile (2025-11-11):
 - Experiments folder requested to isolate spike/de-risking work (temporary CMake projects, mini OpenCV builds) from production code.
 - Experiments directory scaffolded with README, gitignore, and initial spike `2025-11-opencv-mini/` containing CMake skeleton + presets for configurable minimal OpenCV builds.
 - Added bash scripts (download/configure/build) in experiments spike to run nested OpenCV build phases independently via environment variables.
+- README now points to human-verified `launch_opencv_build.sh` for default OpenCV build; manual sections trimmed to reference scripts directly.
