@@ -11,3 +11,4 @@ Stakeholder profile (2025-11-11):
 - OpenCV integration: repo will not vendor OpenCV, but needs a small, extensible build of selected modules (initially core, imgproc, imgcodecs) with ability to add more (e.g., videoio) later; build scripts must support that configurability.
 - Experiments folder requested to isolate spike/de-risking work (temporary CMake projects, mini OpenCV builds) from production code.
 - Experiments directory scaffolded with README, gitignore, and initial spike `2025-11-opencv-mini/` containing CMake skeleton + presets for configurable minimal OpenCV builds.
+- Added bash scripts (download/configure/build) in experiments spike to run nested OpenCV build phases independently via environment variables.

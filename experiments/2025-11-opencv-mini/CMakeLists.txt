@@ -21,29 +21,36 @@ endif()
 set(OPENCV_DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/downloads CACHE PATH "Where to store downloaded archives")
 set(OPENCV_INSTALL_DIR ${CMAKE_BINARY_DIR}/install CACHE PATH "Where to install the minimal build")
 
+set(OPENCV_SOURCE_DIR ${CMAKE_BINARY_DIR}/opencv-mini/src)
+set(OPENCV_BINARY_DIR ${CMAKE_BINARY_DIR}/opencv-mini/build)
+set(OPENCV_SCRIPTS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/scripts)
+
 ExternalProject_Add(opencv-mini
-    PREFIX opencv-mini
-    URL https://github.com/opencv/opencv/archive/refs/tags/${OPENCV_VERSION}.tar.gz
-    DOWNLOAD_DIR ${OPENCV_DOWNLOAD_DIR}
-    SOURCE_SUBDIR .
-    CONFIGURE_COMMAND 
-        ${CMAKE_COMMAND} -S <SOURCE_DIR> -B <BINARY_DIR> \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=${OPENCV_INSTALL_DIR} \
-        -DBUILD_LIST=${_opencv_build_list} \
-        -DBUILD_SHARED_LIBS=OFF \
-        -DBUILD_TESTS=OFF \
-        -DBUILD_PERF_TESTS=OFF \
-        -DBUILD_EXAMPLES=OFF \
-        -DWITH_IPP=ON \
-        -DWITH_TBB=ON \
-        -DBUILD_JAVA=OFF \
-        -DBUILD_opencv_python_tests=OFF \
-        -DBUILD_opencv_python_bindings_generator=OFF \
-        -DWITH_CUDA=OFF \
-        -DCMAKE_CXX_STANDARD=17
-    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target install
+    PREFIX ${CMAKE_BINARY_DIR}/opencv-mini
+    SOURCE_DIR ${OPENCV_SOURCE_DIR}
+    BINARY_DIR ${OPENCV_BINARY_DIR}
+    DOWNLOAD_COMMAND
+        ${CMAKE_COMMAND} -E env
+            OPENCV_VERSION=${OPENCV_VERSION}
+            OPENCV_URL=https://github.com/opencv/opencv/archive/refs/tags/${OPENCV_VERSION}.tar.gz
+            OPENCV_DOWNLOAD_DIR=${OPENCV_DOWNLOAD_DIR}
+            OPENCV_SOURCE_DIR=${OPENCV_SOURCE_DIR}
+            ${OPENCV_SCRIPTS_DIR}/download_opencv.sh
+    CONFIGURE_COMMAND
+        ${CMAKE_COMMAND} -E env
+            OPENCV_SOURCE_DIR=${OPENCV_SOURCE_DIR}
+            OPENCV_BUILD_DIR=${OPENCV_BINARY_DIR}
+            OPENCV_INSTALL_DIR=${OPENCV_INSTALL_DIR}
+            OPENCV_BUILD_LIST=${_opencv_build_list}
+            ${OPENCV_SCRIPTS_DIR}/configure_opencv.sh
+    BUILD_COMMAND
+        ${CMAKE_COMMAND} -E env
+            OPENCV_BUILD_DIR=${OPENCV_BINARY_DIR}
+            OPENCV_BUILD_TARGET=install
+            ${OPENCV_SCRIPTS_DIR}/build_opencv.sh
     INSTALL_COMMAND ""
+    LOG_CONFIGURE 1
+    LOG_BUILD 1
 )
 
 message(STATUS "Configured OpenCV minimal build with modules: ${_opencv_build_list}")
