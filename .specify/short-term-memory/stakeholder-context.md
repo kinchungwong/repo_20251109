@@ -1,0 +1,13 @@
+Stakeholder profile (2025-11-11):
+- Image processing algorithm developer specializing in C++/OpenCV.
+- Designs very large CPU-bound pipelines split into many smaller tasks (dozens to hundreds) using SIMD and multi-core CPUs; GPU/hybrid future concern.
+- Needs reusable C++ component for thread-safe definition/execution of fixed flowgraph workloads.
+- Production target: cloud-based, high-core-count (≥16C32T) high-RAM, long-running service continuously accepting/scheduling requests.
+- Current scoped project: lighter-weight version that can run/test in isolation on home-grade hardware (still 16C32T but smaller than production) to validate concepts before full-scale deployments.
+- Deployment constraint: stakeholder cannot control compiler or distro versions in cloud; code must run across major Linux releases (desktop + cloud distros) on both GCC and Clang toolchains.
+- Language baseline: C++17 (must compile cleanly under GCC/Clang defaults for that standard).
+- Build system expectation: CMake configured to generate Unix Makefiles via presets (developers run preset targets to configure/build/test).
+- Safety validation: rely on stress testing heavy workloads that fully saturate 16C/32T home machine whenever multithread safety could be impacted; exceptions only for low-contention paths guarded by conventional primitives like std::mutex.
+- OpenCV integration: repo will not vendor OpenCV, but needs a small, extensible build of selected modules (initially core, imgproc, imgcodecs) with ability to add more (e.g., videoio) later; build scripts must support that configurability.
+- Experiments folder requested to isolate spike/de-risking work (temporary CMake projects, mini OpenCV builds) from production code.
+- Experiments directory scaffolded with README, gitignore, and initial spike `2025-11-opencv-mini/` containing CMake skeleton + presets for configurable minimal OpenCV builds.

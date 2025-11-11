@@ -1,0 +1,13 @@
+# Ignore heavyweight artifacts produced by spikes
+**/build/
+**/build-*
+**/downloads/
+**/install/
+**/install-*
+**/third_party/
+**/*.cache
+**/*.log
+**/*.tar
+**/*.tar.gz
+**/*.tgz
+**/*.zip
