@@ -13,10 +13,10 @@ test -d "${OPENCV_BUILD_DIR}" || {
   exit 1
 }
 
-# cmake --system-information="${OPENCV_BUILD_DIR}/opencv_cmake_system_info.txt" -B "${OPENCV_BUILD_DIR}"
-
 (
   cd "${OPENCV_BUILD_DIR}"
+
   cmake --system-information
+
   cmake -LAH . 
 )
