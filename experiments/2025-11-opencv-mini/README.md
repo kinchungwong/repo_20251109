@@ -16,6 +16,8 @@ Goal: validate that we can build a minimal, redistributable OpenCV subset (core/
 
 ## Using CMake Presets
 
+For senior human developers: details can be found in `CMakePresets.json`.
+
 If you prefer to stay within raw CMake tooling:
 
 ```bash
