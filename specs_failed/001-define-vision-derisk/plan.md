@@ -1,0 +1,108 @@
+# Implementation Plan: Project Vision & De-Risking Readiness
+
+**Branch**: `001-define-vision-derisk` | **Date**: 2025-11-10 | **Spec**: specs_failed/001-define-vision-derisk/spec.md  
+**Input**: Feature specification from `/specs_failed/001-define-vision-derisk/spec.md`
+
+## Summary
+This iteration delivers the readiness artifacts required before any production GSFD code ships: a signed charter, a lightweight compatibility list backed by twin C++ spike projects, assurance feasibility evidence (sanitizers, deterministic-vs-max parallel comparisons, oversubscribed stress runs), and a governance addendum that documents the single fuzzing waiver. All work happens on the 16C/32T home workstation while reusing the existing minimal OpenCV experiment scaffold.
+
+## TL;DR (≤200 words)
+We will execute two Sobel spikes (GSFD simulator + client) using C++17, CMake presets, and the minimal OpenCV build so we can prove the intended stack works before iteration 1. Each spike run logs “tested-on” compatibility facts, sanitizer outcomes, scheduler comparison results, and stress harness data with evidence stored under `reports/experiments`. Governance artifacts (charter, constraints, risk notes, waivers) stay lightweight but testable, and stakeholder communication happens once—after the spikes show promising results. Fuzz testing remains the only waived mandate; everything else from Principle 5/6 is satisfied on local hardware. Outputs: research.md, data-model.md, quickstart.md, contracts/readiness-api.yaml, updated agent context, and a ready path for `/speckit.tasks` to schedule creation of the charter, compatibility list entries, experiment logs, and the single governance briefing.
+
+## Context Budget & References
+
+| Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
+|-------------------|----------------------|------------------|-----------------|
+| spec.md | ≤400 lines | ~210 | specs_failed/001-define-vision-derisk/spec.md |
+| plan.md | ≤300 lines | ~170 | specs_failed/001-define-vision-derisk/plan.md |
+| tasks.md | ≤250 lines | TBD (post `/speckit.tasks`) | N/A |
+| Short-term-memory notes | ≤40 lines/file | N/A (none expected) | N/A |
+| External evidence store | ≤10 log lines (per Principle 2) | reports/experiments/* | reports/experiments |
+
+## Technical Context
+**Language/Version**: C++17 (GCC 12.x baseline; Clang enablement deferred)  
+**Primary Dependencies**: CMake presets, Ninja, minimal OpenCV (core/imgproc/imgcodecs), standard library `std::thread`, CTest  
+**Storage**: N/A (artifacts captured as Markdown + log files)  
+**Testing**: CTest presets running ASan/TSan/UBSan, deterministic-vs-max parallel scheduler harness, oversubscribed stress scripts; fuzzing waived  
+**Target Platform**: Linux x86_64 workstation with ≥16 cores / 32 threads; compatibility checks add additional OS images as they are executed  
+**Project Type**: C++ experimental spikes + documentation  
+**Performance Goals**: Sobel pipelines must saturate the 16C/32T box without deadlocks; environment bootstrap ≤8 hours per new contributor (SC-003)  
+**Constraints**: No GPU work, no synthetic benchmarking, fuzzing waived; must publish compatibility list and single stakeholder briefing  
+**Scale/Scope**: Two spike repos, readiness documents (charter, compatibility list, risk notes, governance addendum, quickstart)
+
+## Constitution Check
+
+| Field | Value |
+|-------|-------|
+| Risk Tier | Tier 2 |
+| Gate Path | Tier 2 Fast-Path (RTRM) |
+| Mandatory Checklists | `specs_failed/001-define-vision-derisk/checklists/requirements.md`, `specs_failed/001-define-vision-derisk/checklists/risks.md` |
+| Lightweight Waivers | Fuzz testing waived (toolchain gap). Sanitizers, deterministic-vs-max parallel comparisons, and oversubscribed stress runs remain mandatory with logged feasibility evidence. |
+| Evidence Strategy | `cmake --preset host-sanitized && ctest --preset host-sanitized` for ASan/TSan; `ctest --preset host-ubsan`; `python tools/scheduler_compare.py --graph sobel.json`; `./scripts/run_stress.sh --threads 48` storing logs under `reports/experiments/{spike}/{coverage}`; compatibility entries appended to `specs_failed/001-define-vision-derisk/compatibility.md`. |
+| Observability Commitments | Experiment + assurance logs live under `reports/experiments/`; readiness checklist and compatibility list capture reproducibility; governance briefing links to raw evidence. |
+| Automation Gaps / Human Help Needed | Manual approvals for charter/governance sign-off; manual population of compatibility list and risk notes (no privileged commands required). |
+
+## Project Structure
+
+### Documentation (this feature)
+```text
+specs_failed/001-define-vision-derisk/
+├── spec.md
+├── plan.md
+├── research.md
+├── data-model.md
+├── quickstart.md
+├── compatibility.md
+├── contracts/
+│   └── readiness-api.yaml
+├── checklists/
+│   ├── requirements.md
+│   └── risks.md
+└── tasks.md                # to be generated by /speckit.tasks
+```
+
+### Source Code (repository root)
+```text
+experiments/
+└── 2025-11-opencv-mini/        # existing minimal OpenCV build scripts
+spikes/
+├── gsfd_simulator/             # new spike: std::thread launcher for Sobel tasks
+└── gsfd_client/                # new spike: consumes simulator deliverables
+reports/
+└── experiments/
+    ├── spikes/                 # logs per spike + preset
+    └── assurance/              # sanitizer / scheduler / stress evidence
+scripts/
+└── assurance/                  # helpers for deterministic-vs-parallel + stress runs
+```
+**Structure Decision**: Retain the single-project C++ repo layout but isolate spike code under `spikes/` while reusing the existing `experiments/2025-11-opencv-mini` toolchain asset. Evidence lives in `reports/experiments/` to satisfy Principle 7 without bloating source directories.
+
+## Complexity Tracking
+No additional structural violations introduced beyond the Tier 2 fast-path waiver already documented above.
+
+## Phase 0 – Outline & Research
+- **Goals**: Resolve any technical unknowns, define compatibility documentation approach, and confirm assurance coverage feasibility on the 16C/32T host.
+- **Activities**:
+  1. Review `experiments/2025-11-opencv-mini` outputs and note which OpenCV presets the spikes will reuse.
+  2. Define format + storage for the "tested-on" compatibility list (resolved via `compatibility.md`).
+  3. Capture governance expectations (single briefing, fuzzing waiver) and document decisions in `research.md`.
+- **Deliverables**: `research.md` (completed) summarizing spike architecture, compatibility plan, assurance coverage, and comms strategy. No open NEEDS CLARIFICATION items remain after this phase.
+
+## Phase 1 – Design & Contracts
+- **Goals**: Model readiness artifacts, specify conceptual interfaces for evidence ingestion, and document operator flow.
+- **Activities**:
+  1. Extract entities from spec (charter, constraint entries, compatibility runs, experiments, waivers, risk notes, readiness checklist) into `data-model.md`.
+  2. Define conceptual OpenAPI contract (`contracts/readiness-api.yaml`) corresponding to the four major actions (charter update, compatibility logging, assurance evidence, waiver submission).
+  3. Author `quickstart.md` describing prerequisites, spike build/run steps, evidence capture, and the governance briefing trigger.
+  4. Prepare `compatibility.md` table template to unblock FR-002.
+  5. Run `.specify/scripts/bash/update-agent-context.sh codex` so Codex context reflects the new technologies and evidence paths.
+- **Post-Design Constitution Check**: No additional waivers required; Tier 2 fast-path remains valid because optional artifacts were kept lightweight and evidence commands now exist.
+
+## Phase 2 – Implementation Readiness (pre-/speckit.tasks)
+- **Upcoming Work** (to be broken down by `/speckit.tasks`):
+  - Author the actual charter + constraint excerpts and capture sign-offs (US1/FR-001/FR-006).
+  - Build both spikes, populate `compatibility.md`, and log sanitizer/deterministic/stress evidence (US2/US3/FR-002/FR-004/FR-005/FR-008).
+  - Maintain `checklists/risks.md` while experiments execute (FR-003).
+  - Assemble the single governance briefing once the spikes succeed (FR-007).
+  - Store experiment + assurance logs under `reports/experiments/` and link them inside the governance addendum.
+- **Exit Criteria**: All readiness artifacts outlined above exist with evidence links, compatibility list has ≥2 entries, assurance feasibility log documents each mandated coverage (or the blocker), and the fuzzing waiver references the recorded mitigation.

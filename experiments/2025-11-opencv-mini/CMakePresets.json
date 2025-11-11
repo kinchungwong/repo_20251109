@@ -1,0 +1,34 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Minimal OpenCV (core/imgproc/imgcodecs)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OPENCV_BUILD_LIST_DEFAULT": "core,imgproc,imgcodecs",
+        "OPENCV_INSTALL_DIR": "${sourceDir}/install/default"
+      }
+    },
+    {
+      "name": "with-videoio",
+      "displayName": "OpenCV + videoio",
+      "inherits": "default",
+      "cacheVariables": {
+        "OPENCV_CUSTOM_BUILD_LIST": "core,imgproc,imgcodecs,videoio"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "with-videoio",
+      "configurePreset": "with-videoio"
+    }
+  ]
+}

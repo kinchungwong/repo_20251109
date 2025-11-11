@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: GSFD Readiness Evidence API
+  version: 0.1.0
+  description: |
+    Conceptual contract describing how readiness artifacts (charter, compatibility runs,
+    assurance feasibility, governance waivers) would be submitted if automated.
+servers:
+  - url: https://example.invalid/readiness
+paths:
+  /charter:
+    post:
+      summary: Submit or update the readiness charter package
+      operationId: upsertCharter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CharterPayload'
+      responses:
+        '202':
+          description: Charter accepted for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CharterStatus'
+  /spikes/compatibility:
+    post:
+      summary: Record a "tested-on" compatibility run for a spike artifact
+      operationId: recordCompatibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompatibilityRun'
+      responses:
+        '201':
+          description: Compatibility run logged
+  /assurance/feasibility:
+    post:
+      summary: Capture sanitizer / scheduler / stress feasibility evidence
+      operationId: logAssuranceFeasibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssuranceEvidence'
+      responses:
+        '201':
+          description: Assurance evidence stored
+  /governance/waivers:
+    post:
+      summary: Document a mandated-check waiver request
+      operationId: recordWaiver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaiverRequest'
+      responses:
+        '202':
+          description: Waiver routed for approval
+components:
+  schemas:
+    CharterPayload:
+      type: object
+      required: [problemStatement, targetUsers, successMetrics, exclusions]
+      properties:
+        problemStatement:
+          type: string
+        targetUsers:
+          type: string
+        successMetrics:
+          type: array
+          items:
+            type: string
+        guardrails:
+          type: array
+          items:
+            type: string
+        exclusions:
+          type: array
+          items:
+            type: string
+        approvals:
+          type: array
+          items:
+            type: string
+    CharterStatus:
+      type: object
+      properties:
+        state:
+          type: string
+          enum: [draft, pending-approval, approved, rejected]
+        reviewerNotes:
+          type: string
+    CompatibilityRun:
+      type: object
+      required: [spikeName, osImage, compilerVersion, preset, sanitizerFlags, result]
+      properties:
+        spikeName:
+          type: string
+        osImage:
+          type: string
+        compilerVersion:
+          type: string
+        preset:
+          type: string
+        sanitizerFlags:
+          type: array
+          items:
+            type: string
+        result:
+          type: string
+          enum: [pass, fail, blocked]
+        notes:
+          type: string
+    AssuranceEvidence:
+      type: object
+      required: [spikeName, coverageType, command, outcome]
+      properties:
+        spikeName:
+          type: string
+        coverageType:
+          type: string
+          enum: [asan, tsan, ubsan, deterministic_vs_parallel, stress]
+        command:
+          type: string
+        outcome:
+          type: string
+        logPath:
+          type: string
+    WaiverRequest:
+      type: object
+      required: [mandatedCheck, rationale, compensatingControl]
+      properties:
+        mandatedCheck:
+          type: string
+        rationale:
+          type: string
+        compensatingControl:
+          type: string
+        approvalOwner:
+          type: string
+        reentryCriteria:
+          type: string
