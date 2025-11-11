@@ -21,6 +21,9 @@ export CLICOLOR_FORCE=1 # force colored output in logs
 echo "Logging OpenCV build to ${LOGFILE}"
 
 ./scripts/download_opencv.sh 2>&1 | tee -a "${LOGFILE}"
+
 ./scripts/configure_opencv.sh 2>&1 | tee -a "${LOGFILE}"
+
 ./scripts/dump_opencv_cmake_opts.sh 2>&1 | tee -a "${LOGFILE}"
-# OPENCV_BUILD_TARGET=install ./scripts/build_opencv.sh 2>&1 | tee -a "${LOGFILE}"
+
+OPENCV_BUILD_TARGET=install ./scripts/build_opencv.sh 2>&1 | tee -a "${LOGFILE}"

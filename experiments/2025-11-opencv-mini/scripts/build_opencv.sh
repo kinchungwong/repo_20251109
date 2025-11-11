@@ -9,4 +9,4 @@ fi
 : "${OPENCV_BUILD_DIR:?OPENCV_BUILD_DIR must be set}"
 : "${OPENCV_BUILD_TARGET:?OPENCV_BUILD_TARGET must be set}"
 
-cmake --build "${OPENCV_BUILD_DIR}" --target "${OPENCV_BUILD_TARGET}"
+cmake --build "${OPENCV_BUILD_DIR}" --target "${OPENCV_BUILD_TARGET}" --parallel $(nproc)
