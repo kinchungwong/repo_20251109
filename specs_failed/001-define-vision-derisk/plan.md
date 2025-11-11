@@ -1,7 +1,7 @@
 # Implementation Plan: Project Vision & De-Risking Readiness
 
-**Branch**: `001-define-vision-derisk` | **Date**: 2025-11-10 | **Spec**: specs/001-define-vision-derisk/spec.md  
-**Input**: Feature specification from `/specs/001-define-vision-derisk/spec.md`
+**Branch**: `001-define-vision-derisk` | **Date**: 2025-11-10 | **Spec**: specs_failed/001-define-vision-derisk/spec.md  
+**Input**: Feature specification from `/specs_failed/001-define-vision-derisk/spec.md`
 
 ## Summary
 This iteration delivers the readiness artifacts required before any production GSFD code ships: a signed charter, a lightweight compatibility list backed by twin C++ spike projects, assurance feasibility evidence (sanitizers, deterministic-vs-max parallel comparisons, oversubscribed stress runs), and a governance addendum that documents the single fuzzing waiver. All work happens on the 16C/32T home workstation while reusing the existing minimal OpenCV experiment scaffold.
@@ -13,8 +13,8 @@ We will execute two Sobel spikes (GSFD simulator + client) using C++17, CMake pr
 
 | Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
 |-------------------|----------------------|------------------|-----------------|
-| spec.md | ≤400 lines | ~210 | specs/001-define-vision-derisk/spec.md |
-| plan.md | ≤300 lines | ~170 | specs/001-define-vision-derisk/plan.md |
+| spec.md | ≤400 lines | ~210 | specs_failed/001-define-vision-derisk/spec.md |
+| plan.md | ≤300 lines | ~170 | specs_failed/001-define-vision-derisk/plan.md |
 | tasks.md | ≤250 lines | TBD (post `/speckit.tasks`) | N/A |
 | Short-term-memory notes | ≤40 lines/file | N/A (none expected) | N/A |
 | External evidence store | ≤10 log lines (per Principle 2) | reports/experiments/* | reports/experiments |
@@ -36,9 +36,9 @@ We will execute two Sobel spikes (GSFD simulator + client) using C++17, CMake pr
 |-------|-------|
 | Risk Tier | Tier 2 |
 | Gate Path | Tier 2 Fast-Path (RTRM) |
-| Mandatory Checklists | `specs/001-define-vision-derisk/checklists/requirements.md`, `specs/001-define-vision-derisk/checklists/risks.md` |
+| Mandatory Checklists | `specs_failed/001-define-vision-derisk/checklists/requirements.md`, `specs_failed/001-define-vision-derisk/checklists/risks.md` |
 | Lightweight Waivers | Fuzz testing waived (toolchain gap). Sanitizers, deterministic-vs-max parallel comparisons, and oversubscribed stress runs remain mandatory with logged feasibility evidence. |
-| Evidence Strategy | `cmake --preset host-sanitized && ctest --preset host-sanitized` for ASan/TSan; `ctest --preset host-ubsan`; `python tools/scheduler_compare.py --graph sobel.json`; `./scripts/run_stress.sh --threads 48` storing logs under `reports/experiments/{spike}/{coverage}`; compatibility entries appended to `specs/001-define-vision-derisk/compatibility.md`. |
+| Evidence Strategy | `cmake --preset host-sanitized && ctest --preset host-sanitized` for ASan/TSan; `ctest --preset host-ubsan`; `python tools/scheduler_compare.py --graph sobel.json`; `./scripts/run_stress.sh --threads 48` storing logs under `reports/experiments/{spike}/{coverage}`; compatibility entries appended to `specs_failed/001-define-vision-derisk/compatibility.md`. |
 | Observability Commitments | Experiment + assurance logs live under `reports/experiments/`; readiness checklist and compatibility list capture reproducibility; governance briefing links to raw evidence. |
 | Automation Gaps / Human Help Needed | Manual approvals for charter/governance sign-off; manual population of compatibility list and risk notes (no privileged commands required). |
 
@@ -46,7 +46,7 @@ We will execute two Sobel spikes (GSFD simulator + client) using C++17, CMake pr
 
 ### Documentation (this feature)
 ```text
-specs/001-define-vision-derisk/
+specs_failed/001-define-vision-derisk/
 ├── spec.md
 ├── plan.md
 ├── research.md
