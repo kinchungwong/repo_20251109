@@ -4,7 +4,7 @@ Details to be added during the Spec-Driven Development (Spec-Kit) onboarding pro
 
 ## Recent Changes
 - 001-define-vision-derisk: Added C++17 (GCC 12.x baseline; Clang enablement deferred) + CMake presets, Ninja, minimal OpenCV (core/imgproc/imgcodecs), standard library `std::thread`, CTest
-- 001-define-vision-derisk: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+- 001-define-vision-derisk: Added N/A
 
 ## Active Technologies
 - C++17 (GCC 12.x baseline; Clang enablement deferred) + CMake presets, Ninja, minimal OpenCV (core/imgproc/imgcodecs), standard library `std::thread`, CTest (001-define-vision-derisk)

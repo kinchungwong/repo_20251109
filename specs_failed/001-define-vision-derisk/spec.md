@@ -25,7 +25,7 @@ Create a single RTRM Tier 2 readiness package that clarifies why the initiative 
 
 | Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
 |-------------------|----------------------|------------------|-----------------|
-| spec.md | ≤400 lines | ~210 lines | specs/001-define-vision-derisk/spec.md |
+| spec.md | ≤400 lines | ~210 lines | specs_failed/001-define-vision-derisk/spec.md |
 | plan.md | ≤300 lines | TBD (est. ≤180) | N/A (plan not authored yet) |
 | tasks.md | ≤250 lines | TBD (est. ≤150) | N/A (tasks not authored yet) |
 | Short-term-memory digest | ≤40 lines/file | N/A (not requested) | N/A |

@@ -22,8 +22,7 @@ If you prefer to stay within raw CMake tooling:
 
 ```bash
 cmake --preset default
-cmake --build --preset default --target opencv-mini-configure   # configure only
-cmake --build --preset default --target opencv-mini-build       # build+install
+cmake --build --preset default --target opencv-mini   # build+install
 ```
 
 Key cache knobs (set via `cmake --preset` or `cmake -S . -B build/custom -D...`):
@@ -53,7 +52,7 @@ Each script enforces zero positional arguments, requires its environment upfront
 
 All these outputs are git-ignored.
 
-Content of `term_logs/` contain security-sensitive side channel information; must not be shared or shipped into reports without redaction.
+Contents of `term_logs/` contain security-sensitive side channel information; must not be shared or shipped into reports without redaction.
 
 ## Next Steps
 

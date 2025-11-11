@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(ExternalProject)
 
-set(OPENCV_VERSION "4.10.0" CACHE STRING "OpenCV version to fetch and build")
+set(OPENCV_VERSION "4.12.0" CACHE STRING "OpenCV version to fetch and build")
 set(OPENCV_ENABLE_CONTRIB OFF CACHE BOOL "Enable OpenCV contrib repository (adds download time)")
 set(OPENCV_BUILD_LIST_DEFAULT "core,imgproc,imgcodecs" CACHE STRING "Default module list; override BUILD_LIST cache entry to expand")
 set(OPENCV_CUSTOM_BUILD_LIST "" CACHE STRING "Explicit BUILD_LIST override; leave empty to use OPENCV_BUILD_LIST_DEFAULT")

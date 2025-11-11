@@ -8,7 +8,7 @@
 
 ## 2. Fetch Experiments & Spikes
 ```bash
-cd repo_20251109
+cd <repo_root>   # Replace <repo_root> with the directory name where you cloned the repository
 cmake --preset host-release
 ```
 - Use the existing `experiments/2025-11-opencv-mini` preset to build minimal OpenCV modules shared by both spikes.
@@ -32,7 +32,7 @@ cmake --build --preset host-release
 - Confirms the client consumes the simulator deliverable artifacts.
 
 ## 5. Capture Compatibility & Assurance Evidence
-- Append entries to `specs/001-define-vision-derisk/compatibility.md` (created during FR-002 work) for each preset.
+- Append entries to `specs_failed/001-define-vision-derisk/compatibility.md` (created during FR-002 work) for each preset.
 - Record sanitizer and scheduler comparison commands plus outcomes in `reports/experiments/assurance/` (referenced by the plan’s evidence strategy).
 
 ## 6. Governance Briefing Trigger
