@@ -44,10 +44,14 @@ Each script enforces zero positional arguments, requires its environment upfront
 
 ## Outputs
 
-- `downloads/` and `build/downloads`: cached tarballs (gitignored)
-- `build/`: OpenCV’s internal build directory (gitignored)
-- `install/`: ready-to-link OpenCV subset for other spikes (gitignored)
-- `term_logs/<date>/`: full terminal logs for each run, on the local machine (gitignored)
+- `downloads/` and `build/downloads`: cached tarballs
+- `build/`: OpenCV’s internal build directory
+- `install/`: ready-to-link OpenCV subset for other spikes
+- `term_logs/<date>/`: full terminal logs for each run, on the local machine
+
+All these outputs are git-ignored.
+
+Content of `term_logs/` contain security-sensitive side channel information; must not be shared or shipped into reports without redaction.
 
 ## Next Steps
 
