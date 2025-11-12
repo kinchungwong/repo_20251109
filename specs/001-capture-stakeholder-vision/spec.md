@@ -23,7 +23,7 @@ Stakeholders need a single view of why the concurrency framework matters, what s
 - Q: When must `data-model.md` and `contracts/` artifacts be created? → A: Only when a story or spike designs or codes GSFD framework-core APIs; otherwise skip them even if templates request it.
 - Q: Who sets the upper limit on spikes for this iteration? → A: Delivery team and stakeholders jointly decide, and that cap overrides all spec-kit prompts.
 - Q: How should the requested log sanitizer be handled? → A: Allocate a dedicated 48-hour spike to discover, configure, or prototype a sanitizer so sanitized logs can become acceptable evidence in future iterations, without promising GA delivery this increment.
-- Q: How will we verify GSFD can still produce consumable C++ library binaries? → A: Reserve a “hello world” spike that builds a small GSFD-style library with CMake and consumes it from a second project via both static (.a) and shared (.so) linkage.
+- Q: How will we verify the GSFD toolchain still yields consumable C++ libraries? → A: Reserve a “hello world” spike that builds a neutral sample library (no GSFD core code) with CMake and consumes it from a second project via both static (.a) and shared (.so) linkage.
 - Q: What about the IPC exploration request? → A: Document the need for a C++17-friendly IPC spike but defer it to a future increment because current priorities and timebox pressure focus on discovery deliverables; the spike backlog will carry it forward.
 
 ## Context Budget & References
@@ -102,12 +102,13 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **FR-007**: Alert stakeholders when assumptions change or new spikes are added so approvals can be revisited without delay.
 - **FR-008**: Enforce a maximum 48-hour spike timebox and require a lessons-learned summary plus a curated artifact list before a spike can be marked successful.
 - **FR-009**: Schedule a dedicated log-sanitizer spike (≤48 hours) that evaluates existing tools or prototypes a lightweight Python-based sanitizer, documenting whether sanitized logs are now acceptable as evidence artifacts.
-- **FR-010**: Execute a 48-hour “hello world” C++ library spike that builds a minimal GSFD-aligned library with CMake, exposes headers/binaries, and proves an external consumer project can link it both statically (.a) and dynamically (.so).
+- **FR-010**: Execute a 48-hour “hello world” C++ library spike that builds a neutral sample library (toggling static vs shared via build switch), exposes headers/binaries, and proves an external consumer project can link it both statically (.a) and dynamically (.so) using the GSFD toolchain.
 
 ### Key Entities *(include if feature involves data)*
 
 - **Vision Brief**: Consolidated narrative capturing goals, target users, constraints, metrics, decision log, and stakeholder approvals.
 - **Stack Spike**: A timeboxed experiment entry containing hypothesis, success signals, owner, timebox length, dependencies, and decision impact.
+  - Ledger columns (mirrored in `spike-backlog.md` and `reports/spike-tracker.csv`): `Spike ID`, `Hypothesis`, `Timebox`, `Priority`, `Status` (enum: proposed, speccing, implementing, success, failure), `Artifact Status` (enum: implementing, done, deleted), plus a decision link so lifecycle changes stay auditable.
 - **Stakeholder**: Individual or group contributing goals or approvals; attributes include role, availability, decision rights, and escalation contact.
 - **Learning Record**: Artifact storing spike outcomes, evidence, resulting decisions, and follow-up tasks linked back to relevant vision goals.
 
@@ -123,6 +124,10 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - A spike counts as “successful” only when it delivers the mandated lessons summary and curated artifact list alongside the decision recommendation.
 - The total number of spikes this iteration is set collaboratively by the delivery team and stakeholders; their agreement supersedes any automated limits from spec-kit guidance.
 
+## Concurrency Responsibilities Note
+
+Per Constitution Principle 5, we acknowledge `.specify/memory/concurrency_responsibilities.md` as the source of truth for Graph/Validator, Executor, DataHandle, and task-author ownership contracts. This discovery increment does **not** introduce or modify GSFD core code paths; the only technical spikes are (a) the log-sanitizer evidence exploration and (b) a generic “hello world” C++ library that demonstrates static or shared linkage from a consumer project. Consequently, no new concurrency contracts, validation artifacts, or crossref registrations are required this iteration, and any future increment that touches GSFD runtime layers must reopen the memo and document explicit ownership transfers.
+
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
@@ -133,7 +138,7 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **SC-003**: Treat satisfaction of SC-001 and SC-002, combined with zero stakeholder protests at the iteration close-out, as the confidence signal to continue the project.
 - **SC-004**: Ensure ≥95% of completed spikes result in documented backlog decisions (user stories or technical commitments) that stakeholders approve during the iteration wrap-up.
 - **SC-005**: Complete the log-sanitizer spike within 48 hours and produce sanitized sample logs deemed safe for reuse as evidence in subsequent increments, along with a documented recommendation on tool sourcing vs. custom build.
-- **SC-006**: Deliver the C++ library spike output showing both static and shared artifacts plus integration instructions so future increments can reuse the verified build pattern.
+- **SC-006**: Deliver the “hello world” C++ library spike output showing both static and shared artifacts plus integration instructions so future increments can reuse the verified build pattern.
 - **Deferred**: IPC exploration spike (C++17-friendly interprocess communication) logged as stretch goal; to be scheduled once current discovery obligations are complete or if a later increment prioritizes it.
 
 ## Lightweight Gate Notes

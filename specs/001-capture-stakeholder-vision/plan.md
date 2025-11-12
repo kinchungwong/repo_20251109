@@ -12,7 +12,7 @@ This increment formalizes the discovery program for GSFD: capture a ratified sta
 ## TL;DR (≤200 words)
 
 1. Facilitate structured intake workshops/interviews, reconcile conflicts, and publish the stakeholder-signed vision brief (US1).
-2. Convert stated risks into a ranked backlog of ≤48-hour spikes where each item has hypothesis, metrics, owner, schedule, and dependency notes; maintain stakeholder-owned cap on total spikes (US2).
+2. Convert stated risks into a ranked backlog of ≤48-hour spikes where each row captures `Spike ID, Hypothesis, Timebox, Priority, Status {proposed, speccing, implementing, success, failure}, Artifact Status {implementing, done, deleted}` so lifecycle decisions stay auditable while stakeholders maintain the cap on total spikes (US2).
 3. Operate the spike execution loop: monitor 48-hour timers, enforce lessons-summary + artifact checklist, and distribute concise executive briefings within two working days of each spike close (US3).
 4. Evidence strategy: spike tracker in `reports/` (CSV/Markdown) plus meeting minutes in `stakeholder_inputs/`; no automated `data-model.md` or `contracts/` artifacts per stakeholder promise; quickstart doc will describe the facilitation playbook for future increments.
 
@@ -82,11 +82,12 @@ include/gsfd/
 ├── executor/
 └── diagnostics/
 
-reports/                 # CSV/Markdown tracker for spikes (new entries only)
+experiments/             # Disposable spike workspaces (log sanitizer, hello-world linkage)
+reports/                 # Tracker CSV plus spike evidence folders (log sanitizer, C++ linkage)
 stakeholder_inputs/       # Meeting notes, approvals, decisions
 ```
 
-**Structure Decision**: No new build targets are introduced. Discovery artifacts stay under `specs/001-capture-stakeholder-vision/` while operational trackers live in `reports/` and `stakeholder_inputs/` to reuse existing review channels.
+**Structure Decision**: Core GSFD targets remain untouched, but this increment intentionally provisions disposable spike workspaces under `experiments/` (e.g., `experiments/log-sanitizer/*`, `experiments/hello-world-lib/`) plus evidence folders under `reports/` (log-sanitizer findings, C++ linkage proof) to satisfy SC-005 and SC-006. These spikes may be retired or archived case by case once their artifacts are harvested; permanent runtime code changes stay out of scope for this discovery cycle, which is why long-lived documentation still resides in `specs/001-capture-stakeholder-vision/`, `reports/`, and `stakeholder_inputs/`.
 
 ## Complexity Tracking
 

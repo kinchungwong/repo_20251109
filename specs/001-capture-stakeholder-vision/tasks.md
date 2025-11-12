@@ -32,7 +32,7 @@
 
 **Purpose**: Initialize documentation and evidence scaffolding referenced across all stories.
 
-- [ ] T001 Initialize spike tracker headers (Spike ID, Hypothesis, Owner, Timebox, Status, Decision Link) in `reports/spike-tracker.csv`.
+- [ ] T001 Initialize spike tracker headers (Spike ID, Hypothesis, Timebox, Priority, Status {proposed/speccing/implementing/success/failure}, Artifact Status {implementing/done/aborted/deleted}, Decision Link) in `reports/spike-tracker.csv`.
 - [ ] T002 [P] Draft the facilitation & spike-ops outline in `specs/001-capture-stakeholder-vision/quickstart.md`.
 - [ ] T003 [P] Create the stakeholder intake note template in `stakeholder_inputs/templates/intake-session.md`.
 
@@ -45,7 +45,7 @@
 **⚠️ CRITICAL**: Complete this phase before any user story work.
 
 - [ ] T004 Scaffold `specs/001-capture-stakeholder-vision/vision-brief.md` with sections for Goals, Target Users, Constraints, Success Measures, Decisions, and Sign-offs.
-- [ ] T005 [P] Seed `specs/001-capture-stakeholder-vision/spike-backlog.md` with columns for Hypothesis, Signals, Owner, Priority, and Dependencies.
+- [ ] T005 [P] Seed `specs/001-capture-stakeholder-vision/spike-backlog.md` with columns mirroring the tracker (Spike ID, Hypothesis, Timebox, Priority, Status, Artifact Status) plus brief guidance on how each field is maintained iteration over iteration.
 - [ ] T006 [P] Document interview roster, question bank, and spike ranking heuristics inside `specs/001-capture-stakeholder-vision/research.md`.
 - [ ] T007 [P] Add 48-hour timer workflow and evidence drop-zone instructions to `specs/001-capture-stakeholder-vision/quickstart.md`.
 
@@ -71,7 +71,7 @@
 
 ## Phase 4: User Story 2 – Prioritize Stack Spikes (Priority: P2)
 
-**Goal**: Translate risks into a ranked backlog of ≤48-hour spikes with hypotheses, success signals, and owners; execute mandated spikes (log sanitizer, GSFD library).  
+**Goal**: Translate risks into a ranked backlog of ≤48-hour spikes with hypotheses, success signals, and owners; execute mandated spikes (log sanitizer, hello-world linkage demo).  
 **Independent Test**: `spike-backlog.md` lists each spike with hypothesis/metrics/owner, and `reports/spike-tracker.csv` shows schedule + completion data that supports ≥80% success rate and SC-004/SC-005/SC-006 outputs.
 
 ### Implementation for User Story 2
@@ -81,8 +81,8 @@
 - [ ] T014 [US2] Sync the backlog into `reports/spike-tracker.csv`, including planned start/end timestamps and evidence links for each spike.
 - [ ] T015 [P] [US2] Run the log-sanitizer spike, capturing tool experiments, sanitized sample logs, and go/no-go recommendation in `reports/log-sanitizer-spike/README.md`.
 - [ ] T016 [P] [US2] Update `specs/001-capture-stakeholder-vision/research.md#Log-Sanitizer` with sanitizer findings, reusable artifacts, and backlog decision references (supports SC-005).
-- [ ] T017 [US2] Build the “hello world” GSFD-style library under `experiments/gsfd-library-spike/` with CMake presets producing both `.a` and `.so` outputs.
-- [ ] T018 [P] [US2] Document consumer linkage proof (build steps, static/shared linkage logs) inside `reports/cpp-library-spike/README.md` and link it from `spike-backlog.md` (supports SC-006).
+- [ ] T017 [US2] Build the “hello world” sample library under `experiments/hello-world-lib/` with CMake presets producing both `.a` and `.so` outputs (toggle via build switch).
+- [ ] T018 [P] [US2] Document consumer linkage proof (build steps, static/shared linkage logs) inside `reports/hello-world-lib/README.md` and link it from `spike-backlog.md` (supports SC-006).
 - [ ] T019 [US2] Update `reports/spike-tracker.csv` post-execution with success status, lessons summaries, and artifact links to maintain the ≥80% spike success metric (SC-002, SC-004).
 
 **Checkpoint**: Ranked spike backlog plus mandated spikes complete; evidence ready for communications.
@@ -134,6 +134,6 @@
 ## Implementation Strategy
 
 1. **MVP**: Deliver US1 end-to-end (T008–T011) so planning has a ratified vision brief.  
-2. **Increment 2**: Execute US2 spikes, prioritizing mandated log-sanitizer and GSFD library experiments plus tracker updates.  
+2. **Increment 2**: Execute US2 spikes, prioritizing mandated log-sanitizer and hello-world linkage experiments plus tracker updates.  
 3. **Increment 3**: Roll out US3 communications, ensuring decision logs and executive briefs make spike outcomes consumable.  
 4. **Final Polish**: Close documentation gaps and archive evidence for future increments.
