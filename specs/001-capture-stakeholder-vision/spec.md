@@ -99,7 +99,7 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **FR-004**: Rank spike candidates by impact and urgency, and surface the prioritization rationale so trade-offs are transparent.
 - **FR-005**: Establish a communication cadence (e.g., weekly digest plus spike completion briefs) that links outcomes back to the vision goals.
 - **FR-006**: Capture learnings, blockers, and follow-up actions for every spike within two working days of completion, keeping history accessible for planning.
-- **FR-007**: Alert stakeholders when assumptions change or new spikes are added so approvals can be revisited without delay.
+- **FR-007**: Define and publish a reusable spike-management policy in `.specify/memory/spike_management_policy.md` (covering intake, implicit approvals, prioritization, implementation status, and artifact lifecycle) and ensure spike-backlog/tracker updates follow that policy within one business day of any decision.
 - **FR-008**: Enforce a maximum 48-hour spike timebox and require a lessons-learned summary plus a curated artifact list before a spike can be marked successful.
 - **FR-009**: Schedule a dedicated log-sanitizer spike (≤48 hours) that evaluates existing tools or prototypes a lightweight Python-based sanitizer, documenting whether sanitized logs are now acceptable as evidence artifacts.
 - **FR-010**: Execute a 48-hour “hello world” C++ library spike that builds a neutral sample library (toggling static vs shared via build switch), exposes headers/binaries, and proves an external consumer project can link it both statically (.a) and dynamically (.so) using the GSFD toolchain.
@@ -108,7 +108,7 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 
 - **Vision Brief**: Consolidated narrative capturing goals, target users, constraints, metrics, decision log, and stakeholder approvals.
 - **Stack Spike**: A timeboxed experiment entry containing hypothesis, success signals, owner, timebox length, dependencies, and decision impact.
-  - Ledger columns (mirrored in `spike-backlog.md` and `reports/spike-tracker.csv`): `Spike ID`, `Hypothesis`, `Timebox`, `Priority`, `Status` (enum: proposed, speccing, implementing, success, failure), `Artifact Status` (enum: implementing, done, deleted), plus a decision link so lifecycle changes stay auditable.
+  - Ledger columns (mirrored in `spike-backlog.md` and `reports/spike-tracker.csv`, defined in `.specify/memory/spike_management_policy.md`): `Spike ID`, `Hypothesis`, `Timebox`, `Priority`, `Status` (enum: proposed, speccing, implementing, success, failure), `Artifact Status` (enum: implementing, done, deleted), plus a decision link so lifecycle changes stay auditable.
 - **Stakeholder**: Individual or group contributing goals or approvals; attributes include role, availability, decision rights, and escalation contact.
 - **Learning Record**: Artifact storing spike outcomes, evidence, resulting decisions, and follow-up tasks linked back to relevant vision goals.
 

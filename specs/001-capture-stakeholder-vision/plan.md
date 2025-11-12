@@ -38,6 +38,13 @@ This increment formalizes the discovery program for GSFD: capture a ratified sta
 **Constraints**: 48-hour spike cap, lessons-summary + artifact checklist required, spike-count cap set by stakeholders (overrides spec-kit limits), suppress `data-model.md`/`contracts/` unless touching core APIs  
 **Scale/Scope**: One discovery increment covering vision brief + prioritized spike backlog (expected 6–10 spikes, final count decided in kickoff)
 
+### Spike Management Policy
+
+- Canonical source lives at `.specify/memory/spike_management_policy.md` and applies to all future increments.  
+- Mandated columns: `Spike ID`, `Hypothesis`, `Timebox`, `Priority`, `Status {proposed/speccing/implementing/success/failure}`, `Artifact Status {implementing/done/deleted}`, `Decision Link`.  
+- Status transitions must be logged within one business day of the underlying approval decision (implicit or explicit).  
+- Artifact lifecycle rules (implementing/done/deleted) dictate how long evidence remains in `reports/` or when it can be retired; waivers append to the memory doc.
+
 ## Constitution Check
 
 | Field | Value |

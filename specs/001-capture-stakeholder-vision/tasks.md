@@ -33,7 +33,7 @@
 **Purpose**: Initialize documentation and evidence scaffolding referenced across all stories.
 
 - [ ] T001 Initialize spike tracker headers (Spike ID, Hypothesis, Timebox, Priority, Status {proposed/speccing/implementing/success/failure}, Artifact Status {implementing/done/aborted/deleted}, Decision Link) in `reports/spike-tracker.csv`.
-- [ ] T002 [P] Draft the facilitation & spike-ops outline in `specs/001-capture-stakeholder-vision/quickstart.md`.
+- [ ] T002 [P] Draft the facilitation & spike-ops outline in `specs/001-capture-stakeholder-vision/quickstart.md`, referencing and, if needed, updating `.specify/memory/spike_management_policy.md`.
 - [ ] T003 [P] Create the stakeholder intake note template in `stakeholder_inputs/templates/intake-session.md`.
 
 ---
@@ -83,7 +83,7 @@
 - [ ] T016 [P] [US2] Update `specs/001-capture-stakeholder-vision/research.md#Log-Sanitizer` with sanitizer findings, reusable artifacts, and backlog decision references (supports SC-005).
 - [ ] T017 [US2] Build the “hello world” sample library under `experiments/hello-world-lib/` with CMake presets producing both `.a` and `.so` outputs (toggle via build switch).
 - [ ] T018 [P] [US2] Document consumer linkage proof (build steps, static/shared linkage logs) inside `reports/hello-world-lib/README.md` and link it from `spike-backlog.md` (supports SC-006).
-- [ ] T019 [US2] Update `reports/spike-tracker.csv` post-execution with success status, lessons summaries, and artifact links to maintain the ≥80% spike success metric (SC-002, SC-004).
+- [ ] T019 [US2] Update `reports/spike-tracker.csv` post-execution with the policy-mandated columns (status, artifact status, decision link), success metric data, lessons summaries, and artifact links to maintain the ≥80% spike success metric (SC-002, SC-004, FR-007).
 
 **Checkpoint**: Ranked spike backlog plus mandated spikes complete; evidence ready for communications.
 
