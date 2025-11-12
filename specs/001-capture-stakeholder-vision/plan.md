@@ -29,13 +29,13 @@ This increment formalizes the discovery program for GSFD: capture a ratified sta
 ## Technical Context
 
 **Language/Version**: C++17 (GSFD core) + Markdown/docs workflows for discovery outputs  
-**Primary Dependencies**: Existing GSFD build system (CMake + Bazel experiments), internal doc style guide, stakeholder_inputs repository  
+**Primary Dependencies**: Existing GSFD build system (CMake + Bazel experiments), internal doc style guide, stakeholder_inputs repository, Python tooling for log sanitizer prototype  
 **Storage**: Git repo (`stakeholder_inputs/`, `reports/`), no new databases  
-**Testing**: Process verification via checklists; spike tracker scripts verified with existing Python helper (if needed)  
+**Testing**: Process verification via checklists; spike tracker scripts verified with existing Python helper (if needed); log-sanitizer spike includes automated tests that run the winnowing + hash-based pinpoint rules against sample logs before/after.  
 **Target Platform**: Linux dev environments where GSFD builds and documentation live  
 **Project Type**: Core framework documentation & enablement (Tier 1 discovery)  
 **Performance Goals**: Administrative—80% spike success within 48 hours, zero overdue decision briefs  
-**Constraints**: 48-hour spike cap, lessons-summary + artifact checklist required, spike-count cap set by stakeholders (overrides spec-kit limits), suppress `data-model.md`/`contracts/` unless touching core APIs  
+**Constraints**: 48-hour spike cap, lessons-summary + artifact checklist required, spike-count cap set by stakeholders (overrides spec-kit limits), suppress `data-model.md`/`contracts/` unless touching core APIs, log sanitizer must deliver assurance doc + hash-based rule file despite the hackathon-style timebox  
 **Scale/Scope**: One discovery increment covering vision brief + prioritized spike backlog (expected 6–10 spikes, final count decided in kickoff)
 
 ### Spike Management Policy
@@ -56,6 +56,7 @@ This increment formalizes the discovery program for GSFD: capture a ratified sta
 | Evidence Strategy | Vision brief checklist + sign-off log, spike tracker CSV in `reports/`, lessons summaries in `stakeholder_inputs/`, executive briefing distro list |
 | Observability Commitments | Track spike timer start/stop, success rate dashboard, decision log referencing SC-001..SC-004 |
 | Automation Gaps / Human Help Needed | Human-led workshops/interviews, executive brief reviews, stakeholder vote on spike-count cap |
+| Waivers / SLA Adjustments | SC-001 10-business-day SLA waived by sponsors; requirement now states “before increment close” to reflect realistic reviewer availability. |
 
 ## Project Structure
 

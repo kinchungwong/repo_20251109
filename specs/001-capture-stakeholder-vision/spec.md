@@ -101,7 +101,7 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **FR-006**: Capture learnings, blockers, and follow-up actions for every spike within two working days of completion, keeping history accessible for planning.
 - **FR-007**: Define and publish a reusable spike-management policy in `.specify/memory/spike_management_policy.md` (covering intake, implicit approvals, prioritization, implementation status, and artifact lifecycle) and ensure spike-backlog/tracker updates follow that policy within one business day of any decision.
 - **FR-008**: Enforce a maximum 48-hour spike timebox and require a lessons-learned summary plus a curated artifact list before a spike can be marked successful.
-- **FR-009**: Schedule a dedicated log-sanitizer spike (≤48 hours) that evaluates existing tools or prototypes a lightweight Python-based sanitizer, documenting whether sanitized logs are now acceptable as evidence artifacts.
+- **FR-009**: Schedule a dedicated log-sanitizer spike (≤48 hours) that produces (a) an assurance doc enumerating supported log/file types and info categories, and (b) a rule file where each rule contains a winnowing pattern, a hash-based pinpoint pattern (to avoid leaking secrets), and the replacement text; use these artifacts to determine whether sanitized logs are acceptable evidence.
 - **FR-010**: Execute a 48-hour “hello world” C++ library spike that builds a neutral sample library (toggling static vs shared via build switch), exposes headers/binaries, and proves an external consumer project can link it both statically (.a) and dynamically (.so) using the GSFD toolchain.
 
 ### Key Entities *(include if feature involves data)*
@@ -133,11 +133,11 @@ Per Constitution Principle 5, we acknowledge `.specify/memory/concurrency_respon
 ### Measurable Outcomes
 
 - Discovery may define forward-looking outcomes whose measurement window begins in the next delivery increment, provided owners and follow-up checkpoints are assigned before closing this increment.
-- **SC-001**: 100% of identified stakeholder groups sign off on the finalized vision brief within 10 business days of kickoff.
+- **SC-001**: 100% of identified stakeholder groups sign off on the finalized vision brief before this discovery increment closes (no fixed 10-business-day SLA; rationale documented in plan.md).
 - **SC-002**: Achieve an 80% spike success rate inside the mandated 48-hour timebox, where success requires a lessons summary, artifact list, and go/no-go recommendation.
 - **SC-003**: Treat satisfaction of SC-001 and SC-002, combined with zero stakeholder protests at the iteration close-out, as the confidence signal to continue the project.
 - **SC-004**: Ensure ≥95% of completed spikes result in documented backlog decisions (user stories or technical commitments) that stakeholders approve during the iteration wrap-up.
-- **SC-005**: Complete the log-sanitizer spike within 48 hours and produce sanitized sample logs deemed safe for reuse as evidence in subsequent increments, along with a documented recommendation on tool sourcing vs. custom build.
+- **SC-005**: Complete the log-sanitizer spike within 48 hours, publish the assurance doc + hash-based rule file, and include sanitized sample logs plus a documented recommendation on tool sourcing vs. custom build so stakeholders can reuse the evidence in later increments.
 - **SC-006**: Deliver the “hello world” C++ library spike output showing both static and shared artifacts plus integration instructions so future increments can reuse the verified build pattern.
 - **Deferred**: IPC exploration spike (C++17-friendly interprocess communication) logged as stretch goal; to be scheduled once current discovery obligations are complete or if a later increment prioritizes it.
 

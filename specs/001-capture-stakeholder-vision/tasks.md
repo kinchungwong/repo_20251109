@@ -79,8 +79,8 @@
 - [ ] T012 [US2] Enumerate all spike candidates with hypotheses, measurable exit criteria, and owner assignments inside `specs/001-capture-stakeholder-vision/spike-backlog.md`.
 - [ ] T013 [P] [US2] Record prioritization rationale (impact, urgency, dependencies) for every spike row within `specs/001-capture-stakeholder-vision/spike-backlog.md`.
 - [ ] T014 [US2] Sync the backlog into `reports/spike-tracker.csv`, including planned start/end timestamps and evidence links for each spike.
-- [ ] T015 [P] [US2] Run the log-sanitizer spike, capturing tool experiments, sanitized sample logs, and go/no-go recommendation in `reports/log-sanitizer-spike/README.md`.
-- [ ] T016 [P] [US2] Update `specs/001-capture-stakeholder-vision/research.md#Log-Sanitizer` with sanitizer findings, reusable artifacts, and backlog decision references (supports SC-005).
+- [ ] T015 [P] [US2] Run the log-sanitizer spike, capturing tool experiments, sanitized sample logs, the assurance doc (`reports/log-sanitizer-spike/assurance.md`), and the hash-based rule file (`reports/log-sanitizer-spike/rules.yaml`), plus the go/no-go recommendation in `reports/log-sanitizer-spike/README.md`.
+- [ ] T016 [P] [US2] Update `specs/001-capture-stakeholder-vision/research.md#Log-Sanitizer` with sanitizer findings, references to the assurance doc + rule file, reusable artifacts, and backlog decision references (supports SC-005).
 - [ ] T017 [US2] Build the “hello world” sample library under `experiments/hello-world-lib/` with CMake presets producing both `.a` and `.so` outputs (toggle via build switch).
 - [ ] T018 [P] [US2] Document consumer linkage proof (build steps, static/shared linkage logs) inside `reports/hello-world-lib/README.md` and link it from `spike-backlog.md` (supports SC-006).
 - [ ] T019 [US2] Update `reports/spike-tracker.csv` post-execution with the policy-mandated columns (status, artifact status, decision link), success metric data, lessons summaries, and artifact links to maintain the ≥80% spike success metric (SC-002, SC-004, FR-007).
