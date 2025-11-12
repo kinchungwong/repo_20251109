@@ -12,6 +12,17 @@
 
 Stakeholders need a single view of why the concurrency framework matters, what success looks like, and which stack experiments will de-risk the roadmap. This increment formalizes a lightweight discovery program: interview stakeholders, translate the vision into measurable outcomes, map those needs to capability gaps, and commission targeted stack spikes that answer the riskiest questions early. Success means every stakeholder can point to an approved vision brief, prioritized spikes with testable hypotheses, and a cadence for reviewing learnings so planning can progress without guesswork. Context lives in the signed-off vision brief, the spike backlog, and the evidence captured per run.
 
+## Clarifications
+
+### Session 2025-11-11
+
+- Q: Should measurable outcomes only include metrics observable within this discovery increment, or can they extend into the next delivery increment? → A: Outcomes can be deferred to the next delivery increment.
+- Q: What operational constraints govern spike duration, closure, and success criteria this iteration? → A: Every spike ends within 48 hours, must produce a lessons summary, and must list reusable artifacts to count toward the 80% success target.
+- Q: How is SC-003 evaluated without a post-brief survey? → A: When SC-001 and SC-002 are satisfied and no stakeholders protest at iteration wrap-up, that is treated as the confidence signal to continue.
+- Q: How should SC-004 be measured without planning cycle-time data? → A: Count ≥95% of completed spikes converting into documented backlog decisions approved at wrap-up.
+- Q: When must `data-model.md` and `contracts/` artifacts be created? → A: Only when a story or spike designs or codes GSFD framework-core APIs; otherwise skip them even if templates request it.
+- Q: Who sets the upper limit on spikes for this iteration? → A: Delivery team and stakeholders jointly decide, and that cap overrides all spec-kit prompts.
+
 ## Context Budget & References
 
 | Artifact / Stream | Target Lines / Tokens | Current Estimate | Evidence / Link |
@@ -86,6 +97,7 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **FR-005**: Establish a communication cadence (e.g., weekly digest plus spike completion briefs) that links outcomes back to the vision goals.
 - **FR-006**: Capture learnings, blockers, and follow-up actions for every spike within two working days of completion, keeping history accessible for planning.
 - **FR-007**: Alert stakeholders when assumptions change or new spikes are added so approvals can be revisited without delay.
+- **FR-008**: Enforce a maximum 48-hour spike timebox and require a lessons-learned summary plus a curated artifact list before a spike can be marked successful.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -98,16 +110,23 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 
 - Stakeholders can commit to at least one synchronous workshop plus asynchronous reviews within a two-week window.
 - Existing `stakeholder_inputs/` assets provide historic context but require validation during intake.
-- Spikes are limited to two-week timeboxes unless a steering decision extends them.
+- Spikes are now limited to 48-hour windows; any wider investigation must be split into multiple spikes or escalated for exception approval.
+
+## Constraints & Tradeoffs
+
+- Each stack spike is capped at 48 hours from start to finish; depth is traded for rapid feedback, so larger unknowns must be split or scheduled separately.
+- A spike counts as “successful” only when it delivers the mandated lessons summary and curated artifact list alongside the decision recommendation.
+- The total number of spikes this iteration is set collaboratively by the delivery team and stakeholders; their agreement supersedes any automated limits from spec-kit guidance.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
+- Discovery may define forward-looking outcomes whose measurement window begins in the next delivery increment, provided owners and follow-up checkpoints are assigned before closing this increment.
 - **SC-001**: 100% of identified stakeholder groups sign off on the finalized vision brief within 10 business days of kickoff.
-- **SC-002**: At least 80% of prioritized spikes complete within their planned timebox while delivering a documented go/no-go recommendation.
-- **SC-003**: Executive sponsors report ≥90% clarity (via post-brief survey) on how spike outcomes map to business goals.
-- **SC-004**: Planning cycle time for the next delivery increment shrinks by 25% because risks are addressed via the spike backlog.
+- **SC-002**: Achieve an 80% spike success rate inside the mandated 48-hour timebox, where success requires a lessons summary, artifact list, and go/no-go recommendation.
+- **SC-003**: Treat satisfaction of SC-001 and SC-002, combined with zero stakeholder protests at the iteration close-out, as the confidence signal to continue the project.
+- **SC-004**: Ensure ≥95% of completed spikes result in documented backlog decisions (user stories or technical commitments) that stakeholders approve during the iteration wrap-up.
 
 ## Lightweight Gate Notes
 
@@ -118,3 +137,5 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 | Stories Deferred (if any) | N/A |
 | Evidence / Observability Hooks | Vision brief checklist, spike backlog log, learning summaries |
 | Short-term-memory References | To be captured in future digest once spikes run |
+
+**Tier 1 note**: Unless a story or spike involves designing or coding GSFD framework-core API interfaces, suppress creation of `data-model.md` and `contracts/` artifacts despite any spec-kit prompts. This workaround is a stakeholder commitment while the spec-kit issue persists.
