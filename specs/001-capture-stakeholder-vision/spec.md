@@ -22,6 +22,9 @@ Stakeholders need a single view of why the concurrency framework matters, what s
 - Q: How should SC-004 be measured without planning cycle-time data? → A: Count ≥95% of completed spikes converting into documented backlog decisions approved at wrap-up.
 - Q: When must `data-model.md` and `contracts/` artifacts be created? → A: Only when a story or spike designs or codes GSFD framework-core APIs; otherwise skip them even if templates request it.
 - Q: Who sets the upper limit on spikes for this iteration? → A: Delivery team and stakeholders jointly decide, and that cap overrides all spec-kit prompts.
+- Q: How should the requested log sanitizer be handled? → A: Allocate a dedicated 48-hour spike to discover, configure, or prototype a sanitizer so sanitized logs can become acceptable evidence in future iterations, without promising GA delivery this increment.
+- Q: How will we verify GSFD can still produce consumable C++ library binaries? → A: Reserve a “hello world” spike that builds a small GSFD-style library with CMake and consumes it from a second project via both static (.a) and shared (.so) linkage.
+- Q: What about the IPC exploration request? → A: Document the need for a C++17-friendly IPC spike but defer it to a future increment because current priorities and timebox pressure focus on discovery deliverables; the spike backlog will carry it forward.
 
 ## Context Budget & References
 
@@ -98,6 +101,8 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **FR-006**: Capture learnings, blockers, and follow-up actions for every spike within two working days of completion, keeping history accessible for planning.
 - **FR-007**: Alert stakeholders when assumptions change or new spikes are added so approvals can be revisited without delay.
 - **FR-008**: Enforce a maximum 48-hour spike timebox and require a lessons-learned summary plus a curated artifact list before a spike can be marked successful.
+- **FR-009**: Schedule a dedicated log-sanitizer spike (≤48 hours) that evaluates existing tools or prototypes a lightweight Python-based sanitizer, documenting whether sanitized logs are now acceptable as evidence artifacts.
+- **FR-010**: Execute a 48-hour “hello world” C++ library spike that builds a minimal GSFD-aligned library with CMake, exposes headers/binaries, and proves an external consumer project can link it both statically (.a) and dynamically (.so).
 
 ### Key Entities *(include if feature involves data)*
 
@@ -127,6 +132,9 @@ As an executive stakeholder, I receive concise updates that tie spike outcomes b
 - **SC-002**: Achieve an 80% spike success rate inside the mandated 48-hour timebox, where success requires a lessons summary, artifact list, and go/no-go recommendation.
 - **SC-003**: Treat satisfaction of SC-001 and SC-002, combined with zero stakeholder protests at the iteration close-out, as the confidence signal to continue the project.
 - **SC-004**: Ensure ≥95% of completed spikes result in documented backlog decisions (user stories or technical commitments) that stakeholders approve during the iteration wrap-up.
+- **SC-005**: Complete the log-sanitizer spike within 48 hours and produce sanitized sample logs deemed safe for reuse as evidence in subsequent increments, along with a documented recommendation on tool sourcing vs. custom build.
+- **SC-006**: Deliver the C++ library spike output showing both static and shared artifacts plus integration instructions so future increments can reuse the verified build pattern.
+- **Deferred**: IPC exploration spike (C++17-friendly interprocess communication) logged as stretch goal; to be scheduled once current discovery obligations are complete or if a later increment prioritizes it.
 
 ## Lightweight Gate Notes
 
